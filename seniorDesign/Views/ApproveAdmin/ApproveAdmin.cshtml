@@ -1,0 +1,48 @@
+﻿@using WebMatrix.Data;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var db = Database.Open("gen-provider-dbConnectionString");
+    var Org = Request.QueryString["param1"];
+    if (Org.IsEmpty())
+    {
+        Response.Redirect("~/Admin/Admin");
+    }
+    var row = db.QuerySingle("SELECT * FROM Main_Database_For_Directory WHERE Organization = @0", Org);
+    if (IsPost && !Org.IsEmpty())
+    {
+        var approveQueryString = "UPDATE Main_Database_For_Directory SET ApprovedForDirectory= 'true' WHERE Organization=@0";
+        db.Execute(approveQueryString, Org);
+        Response.Redirect("~/Admin/Admin");
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Approve Organization</title>
+</head>
+<body>
+    <h2>Approve Organization - Confirmation</h2>
+    <form method="post" action="" name="form">
+        <hr />
+        <h4>Are you sure you want to approve the following Organization?</h4>
+
+        <p style="border:1px solid black; padding: 5px; font-size: 16px;">
+            <b>Organization Name:</b> @row.Organization <br />
+            <b>Phone:</b> @row.PhoneNumber <br />
+            <b>Email:</b> @row.Email <br />
+            <b>Street Address:</b> @row.StreetAddress <br />
+            <b>County:</b> @row.County <br />
+            <b>Country:</b> @row.Country <br />
+            <b>Postal Code:</b> @row.PostalCode <br />
+            <b>Services Offered:</b> @row.ServicesOffered <br />
+            <b>Type of Organization:</b> @row.TypeOfOrganization
+        </p>
+        <p><input type="submit" value="Approve" class="btn btn-success" /></p>
+    </form>
+</body>
+</html>
+

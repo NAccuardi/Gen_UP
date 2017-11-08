@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'gen-provider-db.dbo.Comment_Table' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Comment_Table">
+          <Key>
+            <PropertyRef Name="Organization" />
+            <PropertyRef Name="CommentsAboutOrganization" />
+          </Key>
+          <Property Name="Organization" Type="text" Nullable="false" />
+          <Property Name="CommentsAboutOrganization" Type="text" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'gen-provider-db.dbo.Main_Database_For_Directory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Main_Database_For_Directory">
+          <Key>
+            <PropertyRef Name="Organization" />
+            <PropertyRef Name="ApprovedForDirectory" />
+          </Key>
+          <Property Name="Organization" Type="text" Nullable="false" />
+          <Property Name="PhoneNumber" Type="char" MaxLength="15" />
+          <Property Name="Email" Type="text" />
+          <Property Name="StreetAddress" Type="text" />
+          <Property Name="County" Type="text" />
+          <Property Name="Country" Type="text" />
+          <Property Name="PostalCode" Type="int" />
+          <Property Name="ServicesOffered" Type="text" />
+          <Property Name="TypeOfOrginization" Type="text" />
+          <Property Name="InformationSource" Type="binary" MaxLength="50" />
+          <Property Name="ApprovedForDirectory" Type="binary" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Comment_Table" EntityType="Self.Comment_Table" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Comment_Table].[Organization] AS [Organization], 
+    [Comment_Table].[CommentsAboutOrganization] AS [CommentsAboutOrganization]
+    FROM [dbo].[Comment_Table] AS [Comment_Table]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Main_Database_For_Directory" EntityType="Self.Main_Database_For_Directory" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Main_Database_For_Directory].[Organization] AS [Organization], 
+    [Main_Database_For_Directory].[PhoneNumber] AS [PhoneNumber], 
+    [Main_Database_For_Directory].[Email] AS [Email], 
+    [Main_Database_For_Directory].[StreetAddress] AS [StreetAddress], 
+    [Main_Database_For_Directory].[County] AS [County], 
+    [Main_Database_For_Directory].[Country] AS [Country], 
+    [Main_Database_For_Directory].[PostalCode] AS [PostalCode], 
+    [Main_Database_For_Directory].[ServicesOffered] AS [ServicesOffered], 
+    [Main_Database_For_Directory].[TypeOfOrginization] AS [TypeOfOrginization], 
+    [Main_Database_For_Directory].[InformationSource] AS [InformationSource], 
+    [Main_Database_For_Directory].[ApprovedForDirectory] AS [ApprovedForDirectory]
+    FROM [dbo].[Main_Database_For_Directory] AS [Main_Database_For_Directory]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Comment_Table">
+          <Key>
+            <PropertyRef Name="Organization" />
+            <PropertyRef Name="CommentsAboutOrganization" />
+          </Key>
+          <Property Name="Organization" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CommentsAboutOrganization" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Main_Database_For_Directory">
+          <Key>
+            <PropertyRef Name="Organization" />
+            <PropertyRef Name="ApprovedForDirectory" />
+          </Key>
+          <Property Name="Organization" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="StreetAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="County" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PostalCode" Type="Int32" />
+          <Property Name="ServicesOffered" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TypeOfOrginization" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="InformationSource" Type="Binary" MaxLength="50" FixedLength="true" />
+          <Property Name="ApprovedForDirectory" Type="Binary" MaxLength="50" FixedLength="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Comment_Table" EntityType="Self.Comment_Table" />
+          <EntitySet Name="Main_Database_For_Directory" EntityType="Self.Main_Database_For_Directory" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Comment_Table">
+            <EntityTypeMapping TypeName="Model.Comment_Table">
+              <MappingFragment StoreEntitySet="Comment_Table">
+                <ScalarProperty Name="Organization" ColumnName="Organization" />
+                <ScalarProperty Name="CommentsAboutOrganization" ColumnName="CommentsAboutOrganization" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Main_Database_For_Directory">
+            <EntityTypeMapping TypeName="Model.Main_Database_For_Directory">
+              <MappingFragment StoreEntitySet="Main_Database_For_Directory">
+                <ScalarProperty Name="Organization" ColumnName="Organization" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
+                <ScalarProperty Name="County" ColumnName="County" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="ServicesOffered" ColumnName="ServicesOffered" />
+                <ScalarProperty Name="TypeOfOrginization" ColumnName="TypeOfOrginization" />
+                <ScalarProperty Name="InformationSource" ColumnName="InformationSource" />
+                <ScalarProperty Name="ApprovedForDirectory" ColumnName="ApprovedForDirectory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

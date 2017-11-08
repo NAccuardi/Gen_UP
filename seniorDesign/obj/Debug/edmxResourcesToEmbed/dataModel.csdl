@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Web_ScrapperModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Scrapped_Data">
+    <Key>
+      <PropertyRef Name="Orginization" />
+    </Key>
+    <Property Name="Orginization" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone_Number" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="Street_Address" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="County" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Services_Offered" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Unique" Type="Boolean" />
+    <Property Name="Type_of_Orginizatoin" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="User_Inputted_Data">
+    <Key>
+      <PropertyRef Name="Orginization" />
+    </Key>
+    <Property Name="Orginization" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone_NUmber" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="Street_Address" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="County" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Services_Offered" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Unique" Type="Boolean" />
+    <Property Name="Type_of_Orginization" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="Web_ScrapperEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Scrapped_Data" EntityType="Self.Scrapped_Data" />
+    <EntitySet Name="User_Inputted_Data" EntityType="Self.User_Inputted_Data" />
+  </EntityContainer>
+</Schema>

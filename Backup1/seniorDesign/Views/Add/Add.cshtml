@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "GEN Provider Directory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
+<div class="jumbotron">
+    <h2>Add Providers </h2>
+	<p class="lead">Manually add or edit providers.</p>
+</div>
+
+<form>
+  <div class="form-group">
+    <label for="orgName">Organization Name</label>
+    <input type="text" class="form-control" id="orgName" placeholder="Enter Name">
+  </div>
+  <div class="form-group">
+    <label for="address">Address</label>
+    <input type="text" class="form-control" id="address" placeholder="Enter Address">
+  </div>
+  <div class="form-group">
+    <label for="phone">Phone Number</label>
+    <input type="tel" class="form-control" id="phone" placeholder="Enter Phone #">
+  </div>
+  <div class="form-group">
+    <label for="email">Email Address</label>
+    <input type="email" class="form-control" id="email" placeholder="Enter Email">
+  </div>
+
+  <label for="service">Add Service</label>
+  <div class="input-group">
+    <input type="text" class="form-control" id="service" placeholder="Enter Service">
+    <div class="input-group-btn">
+      <button class="btn btn-warning" onclick= "addService()" type="button">
+        <i class="glyphicon glyphicon-plus"></i> Add Service
+      </button>
+    </div>
+  </div>
+
+  <hr />
+
+  <label for="serviceList"><u>List of Services</u></label>
+  <ul class="list-group" id="serviceList" style="width: 70%; overflow: scroll; max-height: 90px;">
+  </ul>
+
+  <hr />
+
+  <button type="button" onclick= "submit()" class="btn btn-success">Submit</button>
+</form>
+
+<script>
+    function addService(){
+	    var item = $("#service").val();
+	    $("#serviceList").append('<li class="list-group-item">'+item+'<a href="#" type="button" onclick="Delete(this);" class="btn btn-default" style="float: right; padding-top:2px; padding-bottom: 0px; font-size: 12px; "><span class="glyphicon glyphicon-trash"></span></a></li>');
+	    $("#service").val("");
+
+       
+	}
+    $(document).ready(function(){
+        
+    });
+	function Delete(currentEl){
+      currentEl.parentNode.parentNode.removeChild(currentEl.parentNode);
+      }
+	
+    
+</script>
+
+

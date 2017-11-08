@@ -1,8 +1,14 @@
 ﻿using System;
+using System.Data;
+using System.Text;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
+using seniorDesign;
 
 namespace MyTecBits_Bootstrap_Empty_MVC.Controllers
 {
@@ -10,7 +16,12 @@ namespace MyTecBits_Bootstrap_Empty_MVC.Controllers
     {
         public ActionResult List()
         {
-            return View ();
+            Entities entities = new Entities();
+            return View(from Main_Database_For_Directory in entities.Main_Database_For_Directory.Take(10) select Main_Database_For_Directory);
         }
     }
+    
+
+
+     
 }

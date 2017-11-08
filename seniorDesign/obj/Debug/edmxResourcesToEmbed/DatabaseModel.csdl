@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Comment_Table">
+    <Key>
+      <PropertyRef Name="Organization" />
+      <PropertyRef Name="CommentsAboutOrganization" />
+    </Key>
+    <Property Name="Organization" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CommentsAboutOrganization" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Main_Database_For_Directory">
+    <Key>
+      <PropertyRef Name="Organization" />
+      <PropertyRef Name="ApprovedForDirectory" />
+    </Key>
+    <Property Name="Organization" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="StreetAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="County" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PostalCode" Type="Int32" />
+    <Property Name="ServicesOffered" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TypeOfOrginization" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InformationSource" Type="Binary" MaxLength="50" FixedLength="true" />
+    <Property Name="ApprovedForDirectory" Type="Binary" MaxLength="50" FixedLength="true" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Comment_Table" EntityType="Self.Comment_Table" />
+    <EntitySet Name="Main_Database_For_Directory" EntityType="Self.Main_Database_For_Directory" />
+  </EntityContainer>
+</Schema>

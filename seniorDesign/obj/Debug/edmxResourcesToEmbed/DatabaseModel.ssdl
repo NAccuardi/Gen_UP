@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'gen-provider-db.dbo.Comment_Table' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Comment_Table">
+    <Key>
+      <PropertyRef Name="Organization" />
+      <PropertyRef Name="CommentsAboutOrganization" />
+    </Key>
+    <Property Name="Organization" Type="text" Nullable="false" />
+    <Property Name="CommentsAboutOrganization" Type="text" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'gen-provider-db.dbo.Main_Database_For_Directory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Main_Database_For_Directory">
+    <Key>
+      <PropertyRef Name="Organization" />
+      <PropertyRef Name="ApprovedForDirectory" />
+    </Key>
+    <Property Name="Organization" Type="text" Nullable="false" />
+    <Property Name="PhoneNumber" Type="char" MaxLength="15" />
+    <Property Name="Email" Type="text" />
+    <Property Name="StreetAddress" Type="text" />
+    <Property Name="County" Type="text" />
+    <Property Name="Country" Type="text" />
+    <Property Name="PostalCode" Type="int" />
+    <Property Name="ServicesOffered" Type="text" />
+    <Property Name="TypeOfOrginization" Type="text" />
+    <Property Name="InformationSource" Type="binary" MaxLength="50" />
+    <Property Name="ApprovedForDirectory" Type="binary" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="Comment_Table" EntityType="Self.Comment_Table" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Comment_Table].[Organization] AS [Organization], 
+    [Comment_Table].[CommentsAboutOrganization] AS [CommentsAboutOrganization]
+    FROM [dbo].[Comment_Table] AS [Comment_Table]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Main_Database_For_Directory" EntityType="Self.Main_Database_For_Directory" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Main_Database_For_Directory].[Organization] AS [Organization], 
+    [Main_Database_For_Directory].[PhoneNumber] AS [PhoneNumber], 
+    [Main_Database_For_Directory].[Email] AS [Email], 
+    [Main_Database_For_Directory].[StreetAddress] AS [StreetAddress], 
+    [Main_Database_For_Directory].[County] AS [County], 
+    [Main_Database_For_Directory].[Country] AS [Country], 
+    [Main_Database_For_Directory].[PostalCode] AS [PostalCode], 
+    [Main_Database_For_Directory].[ServicesOffered] AS [ServicesOffered], 
+    [Main_Database_For_Directory].[TypeOfOrginization] AS [TypeOfOrginization], 
+    [Main_Database_For_Directory].[InformationSource] AS [InformationSource], 
+    [Main_Database_For_Directory].[ApprovedForDirectory] AS [ApprovedForDirectory]
+    FROM [dbo].[Main_Database_For_Directory] AS [Main_Database_For_Directory]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

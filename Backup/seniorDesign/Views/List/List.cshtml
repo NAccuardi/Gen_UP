@@ -1,0 +1,245 @@
+﻿@{
+    ViewBag.Title = "GEN Provider Directory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<div class="jumbotron">
+    <h2>Search</h2>
+    <p class="lead">Search through list of providers.</p>
+</div>
+
+<div class="panel panel-primary">
+  <!-- Default panel contents -->
+  <div class="panel-heading" id="title"></div>
+
+<div style="overflow: scroll; max-height: 360px;">    
+  <!-- Table -->
+<table id="myTable" class="table table-striped table-hover table-bordered" data-show-refresh="true" data-toggle="table" data-search="true" data-pagination="true" data-filter-control="true" data-sort-order="desc" >
+	<thead>
+      <tr>
+		<th></th>
+        <th></th>
+		<th>Verify</th>			
+        <th>Organization</th>
+        <th>Address</th>
+		<th>Phone</th>
+        <th>Email</th>
+		<th>Services</th>
+        <th>Authority</th>
+      </tr>
+	  <tr>
+		<th></th>
+        <th></th>
+		<th></th>
+		<th>
+			<div class="form-group has-feedback">
+            <input type="text" id="org" onkeyup="search(3)" class="form-control" />
+            <i class="glyphicon glyphicon-search form-control-feedback"></i>
+            </div>
+		</th>
+        <th>
+            <div class="form-group has-feedback">
+            <input type="text" id="address" onkeyup="search(4)" class="form-control" />
+            <i class="glyphicon glyphicon-search form-control-feedback"></i>
+            </div>
+        </th>
+        <th>
+            <div class="form-group has-feedback">
+            <input type="text" id="phone" onkeyup="search(5)" class="form-control" />
+            <i class="glyphicon glyphicon-search form-control-feedback"></i>
+            </div>
+        </th>
+		<th>
+            <div class="form-group has-feedback">
+            <input type="text" id="email" onkeyup="search(6)" class="form-control" />
+            <i class="glyphicon glyphicon-search form-control-feedback"></i>
+            </div>
+        </th>
+		<th>
+            <div class="form-group has-feedback">
+            <input type="text" id="services" onkeyup="search(7)" class="form-control" />
+            <i class="glyphicon glyphicon-search form-control-feedback"></i>
+            </div>
+        </th>
+		<th>
+            <div class="form-group has-feedback">
+            <input type="text" id="authority" onkeyup="search(8)" class="form-control" />
+            <i class="glyphicon glyphicon-search form-control-feedback"></i>
+            </div>
+        </th>
+
+      </tr>
+    </thead>
+	<tbody>
+	  <tr>
+		<td><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button></td>
+        <td><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button></td>
+		<td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#comments"><span class="glyphicon glyphicon-thumbs-down"></span></button></td>
+		<td>AAAA</td>
+        <td>Nantes, France</td>
+		<td>(xxx) xxx-xxxx</td>
+        <td>abc@gmail.com</td>
+		<td>service 1, service 2</td>
+        <td>Government</td>
+	  </tr>
+	  <tr>
+		<td><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button></td>
+        <td><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button></td>
+        <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#comments"><span class="glyphicon glyphicon-thumbs-up"></span></button></td>
+        <td>BBBB</td>
+        <td>Seattle, Washington</td>
+        <td>(xxx) xxx-xxxx</td>
+        <td>abc@gmail.com</td>
+        <td>service 1, service 2</td>
+		<td>Non-Profit</td>
+      </tr>
+	  <tr>
+		<td><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button></td>
+        <td><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button></td>
+        <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#comments"><span class="glyphicon glyphicon-thumbs-up"></span></button></td>
+        <td>CCCC</td>
+        <td>Portland, Oregon</td>
+        <td>(xxx) xxx-xxxx</td>
+        <td>abc@gmail.com</td>
+        <td>service 1, service 2</td>
+		<td>Commercial</td>
+      </tr>
+	</tbody>
+
+  </table>
+</div>
+</div>
+
+<div class="modal fade" id="comments" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" style="margin-left: 7px" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" id="commentTitle">Comments</h4>
+        </div>
+        <div class="modal-body">
+     
+		  <ul class="list-group" id="listOfComments" style="overflow: scroll; max-height: 150px; width: 100%;">
+			<li class="list-group-item list-group-item-success"><p>The rating for this organization</p><small>organization</small></li>
+            <li class="list-group-item list-group-item-success"><p>The rating for this organization</p><small>organization</small></li>
+			<li class="list-group-item list-group-item-danger"><p>The rating for this organization</p><small>organization</small></li>
+			<li class="list-group-item list-group-item-success"><p>The rating for this organization</p><small>organization</small></li>
+		  </ul>
+          <hr/>
+		<div style="background-color: #eeeeee; padding: 7px;">
+		  <h4>Add a Comment:</h4>
+          <textarea class="form-control" rows="2" id="commentBox"></textarea>
+
+		  <label for="commentName" style="padding-top:4px">Your Organization Name:</label>
+          <input class="form-control" id="commentName">
+		  <label style="padding-top:4px">Rate: </label>
+		  <br/>
+				
+		  <button class="btn btn-default" id="likeBtn" onclick="chooseRating(0)"><b><span class="glyphicon glyphicon-thumbs-up"></span></b></button>
+          <button class="btn btn-default" id="dislikeBtn" onclick="chooseRating(1)"><b><span class="glyphicon glyphicon-thumbs-down"></span></b></button>
+          <br/>
+		  <br/>
+		  <button class="btn btn-default" style="margin-top: 5px">Add</button>
+        </div>
+		</div>
+		
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" onclick="chooseRating(2)" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>	
+
+<script>
+
+$( document ).ready(function() { 
+
+	updateBadge();
+
+    
+	
+});
+
+function chooseRating(rating){
+
+	if(rating ==0){
+        $("#likeBtn").css({"color":"white", "background-color": "#419641"});
+	    $("#dislikeBtn").css({"color":"black", "background-color": "white"});
+	}
+	else if(rating==1){
+        $("#dislikeBtn").css({"color":"white", "background-color": "#c12e2a"});
+	    $("#likeBtn").css({"color":"black", "background-color": "white"});
+	}
+	else if(rating==2){
+        $("#dislikeBtn").css({"color":"black", "background-color": "white"});
+	    $("#likeBtn").css({"color":"black", "background-color": "white"});
+	}
+}
+
+function updateBadge(){
+	
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    var i = tr.length - 2;
+    $("#title").html('<span>Directory of Providers </span><span class="badge"> '+i+'</span>');
+
+
+	$("#commentTitle").html('<span>Comment </span><span style="float: right; font-size: 14px"> Verified by: <span class="badge">85%</span></span>');
+
+}
+
+function search(col) {
+  
+  var input, filter, table, tr, td, i;
+	
+  if(col == 3){
+    input = document.getElementById("org");
+  }
+  else if(col == 4){
+    input = document.getElementById("address");
+  }
+  else if(col == 5){
+    input = document.getElementById("phone");
+  }
+  else if(col == 6){
+    input = document.getElementById("email");
+  }
+  else if(col == 7){
+    input = document.getElementById("services");
+  }
+  else if(col == 8){
+    input = document.getElementById("authority");
+  }
+	
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[col];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    } 
+  }
+
+}
+
+</script>
+
+

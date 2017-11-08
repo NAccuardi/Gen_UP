@@ -1,0 +1,108 @@
+﻿@using WebMatrix.Data;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var db = Database.Open("gen-provider-dbConnectionString");
+    var Org = Request.QueryString["param1"];
+    var Comment = Request.Form["Comment"];
+    var Name = Request.Form["Name"];
+    var Verified = Request.Form["Verified"];
+    if (Org.IsEmpty())
+    {
+        Response.Redirect("~/List/List");
+    }
+    //var row = db.QuerySingle("SELECT * FROM Comment_Table WHERE Organization = @0", Org);
+    var positiveReviews = db.QuerySingle("SELECT COUNT(*) AS PosRev FROM Comment_Table WHERE Verified = 'true' and Organization='" + Org + "'");
+    
+    if (IsPost && Org != null)
+    {
+
+        var insertQuery = "INSERT INTO Comment_Table (Organization, CommentsAboutOrganization, OrgName, Verified) " +
+            "VALUES (@0, @1, @2, @3)";
+        db.Execute(insertQuery, Org, Comment, Name, Verified);
+
+        Response.Redirect("~/List/List");
+
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Comments</title>
+</head>
+<body>
+    @Html.ValidationSummary("Errors with your submission:")
+   
+    <div style="padding-left:5px; border:3px double black; margin-bottom: 10px; background-color: #fafafa ">
+        <h4>Comments: <u>@Org</u></h4>
+    </div>
+    <div>
+        <p>Rating: </p>
+    </div>
+    
+    <div>
+        <ul class="list-group" id="listOfComments" style="overflow: scroll; max-height: 250px; width: 100%;">
+            @foreach (var row1 in db.Query("Select * FROM Comment_Table WHERE Organization='" + Org + "'"))
+            {
+                if (row1.Verified == null)
+                {
+                    <li class='list-group-item list-group-item-default'><p><b style="font-size: 20px">"</b> @row1.CommentsAboutOrganization <b style="font-size: 20px">"</b></p><small><span class="glyphicon glyphicon-user"></span> @row1.OrgName</small></li>
+                }
+                else if (row1.Verified == true)
+                {
+                    <li class='list-group-item list-group-item-success'><p><b style="font-size: 20px">"</b> @row1.CommentsAboutOrganization <b style="font-size: 20px">"</b></p><small><span class="glyphicon glyphicon-user"></span> @row1.OrgName</small></li>
+                }
+                else if (row1.Verified == false)
+                {
+                    <li class='list-group-item list-group-item-danger'><p><b style="font-size: 20px">"</b> @row1.CommentsAboutOrganization <b style="font-size: 20px">"</b></p><small><span class="glyphicon glyphicon-user"></span> @row1.OrgName</small></li>
+                }
+
+            }
+        </ul>
+        <hr />
+        <form method="post" action="">
+            <fieldset>
+                <div style="background-color: #eeeeee; padding: 7px;">
+                    <h4>Add a Comment:</h4>
+                    <textarea class="form-control" rows="2" name="Comment" value="@Comment"></textarea>
+
+                    <label for="commentName" style="padding-top:4px">Your Organization Name:</label>
+                    <input class="form-control" name="Name" value="@Name">
+                    <label style="padding-top:4px">Rate: </label>
+                    <br />
+
+                    <button class="btn btn-default" id="likeBtn" onclick="chooseRating(1)"><b><span class="glyphicon glyphicon-thumbs-up"></span></b></button>
+                    <button class="btn btn-default" id="dislikeBtn" onclick="chooseRating(0)"><b><span class="glyphicon glyphicon-thumbs-down"></span></b></button>
+                    <input id="Verified" name="Verified" style="display: none" value="@Verified" />
+                    <br />
+                    
+                </div>
+                </fieldset>
+            </form>
+    </div>
+
+</body>
+</html>
+<script>
+    
+    function chooseRating(rating) {
+
+        if (rating == 1) {
+            $("#likeBtn").css({ "color": "white", "background-color": "#419641" });
+            $("#dislikeBtn").css({ "color": "black", "background-color": "white" });
+            $("#Verified").val('true');
+        }
+        else if (rating == 0) {
+            $("#dislikeBtn").css({ "color": "white", "background-color": "#c12e2a" });
+            $("#likeBtn").css({ "color": "black", "background-color": "white" });
+            $("#Verified").val('false');
+        }
+        else if (rating == 2) {
+            $("#dislikeBtn").css({ "color": "black", "background-color": "white" });
+            $("#likeBtn").css({ "color": "black", "background-color": "white" });
+        }
+    }
+</script>

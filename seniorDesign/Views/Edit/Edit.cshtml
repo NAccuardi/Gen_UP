@@ -1,0 +1,136 @@
+﻿@using WebMatrix.Data;
+@{
+    ViewBag.Title = "GEN Provider Directory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+
+    var db = Database.Open("gen-provider-dbConnectionString");
+    
+    var Org = Request.QueryString["param1"];
+    var Phone = "";
+    var Email = "";
+    var Street = "";
+    var County = "";
+    var Country = "";
+    var Postal = "";
+    var Services = "";
+    var Type = "";
+    //var InfoSource = true;
+    //var Approved = true;
+
+    if (Org.IsEmpty())
+    {
+        Response.Redirect("~/List/List");
+    }
+
+
+
+    if (IsPost)
+    {
+        var updateQueryString =
+            "UPDATE Main_Database_For_Directory SET PhoneNumber=@0, Email=@1, StreetAddress=@2, County=@3, Country=@4, PostalCode=@5, ServicesOffered=@6, TypeOfOrganization=@7 WHERE Organization=@8";
+        Phone = Request["Phone"];
+        Email = Request["Email"];
+        Street = Request["Street"];
+        County = Request["County"];
+        Country = Request["Country"];
+        Postal = Request["Postal"];
+        Services = Request["Services"];
+        Type = Request["Type"];
+        db.Execute(updateQueryString, Phone, Email, Street, County, Country, Postal, Services, Type, Org);
+        Response.Redirect(@Href("~/List/List"));
+    }
+    else
+    {
+        var selectQueryString = "SELECT * FROM Main_Database_For_Directory WHERE Organization=@0";
+
+        var row = db.QuerySingle(selectQueryString, Org);
+        Phone = row.PhoneNumber;
+        Email = row.Email;
+        Street = row.StreetAddress;
+        County = row.County;
+        Country = row.Country;
+        Postal = row.PostalCode;
+        Services = row.ServicesOffered;
+        Type = row.TypeOfOrganization;
+    }
+
+}
+
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<style>
+    .col-md-12 {
+        margin-bottom: 5px;
+    }
+</style>
+<!DOCTYPE html>
+
+<html>
+<head>
+</head>
+<body>
+    <div class="jumbotron">
+        <h2>Edit Providers </h2>
+        <p class="lead">Manually add or edit providers.</p>
+    </div>
+
+
+    @Html.ValidationSummary("Errors with your submission:")
+
+    <form method="post" action="">
+        <fieldset>
+            <div class="row">
+
+
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Organization:</label></div>
+                    <div class="col-md-8"><input class="form-control" name="Org" type="text" size="100" value="@Org" /></div>
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Phone Number:</label></div>
+                    <div class="col-md-8"><input class="form-control" name="Phone" type="text" size="100" value="@Phone" /></div>
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Email:</label></div>
+                    <div class="col-md-8"><input class="form-control" name="Email" type="text" size="100" value="@Email" /></div>
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Street Address:</label></div>
+                    <div class="col-md-8"><input class="form-control" name="Street" type="text" size="100" value="@Street" /></div>
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>County:</label></div>
+                    <div class="col-md-8"><input class="form-control" name="County" type="text" size="100" value="@County" /></div>
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Country:</label></div>
+                    <div class="col-md-8"><input class="form-control" name="Country" type="text" size="100" value="@Country" /></div>
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Postal Code:</label></div>
+                    <div class="col-md-8"><input class="form-control" name="Postal" type="text" size="100" value="@Postal" /></div>
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Services Offered:</label></div>
+                    <div class="col-md-8"><input class="form-control" name="Services" type="text" size="100" value="@Services" /></div>
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Type of Organization:</label></div>
+                    <div class="col-md-8"><input class="form-control" name="Type" type="text" size="100" value="@Type" /></div>
+                </div>
+                <div class="col-md-offset-3 col-md-12">
+                    <label>&nbsp;</label>
+                    <input type="submit" value="Submit" class="submit btn btn-success" />
+                </div>
+
+            </div>
+        </fieldset>
+    </form>
+    </body>
+</html>
+
+
+    

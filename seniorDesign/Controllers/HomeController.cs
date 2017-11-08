@@ -10,21 +10,15 @@ namespace MyTecBits_Bootstrap_Empty_MVC.Controllers
     {
         // GET: Home
         public ActionResult Index()
-        {
+        { 
             return View();
         }
 
         // GET: Home/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+        public ActionResult Details(int id) => View();
 
         // GET: Home/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+        public ActionResult Create() => View();
 
         // POST: Home/Create
         [HttpPost]

@@ -1,0 +1,47 @@
+﻿@using WebMatrix.Data;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var db = Database.Open("gen-provider-dbConnectionString");
+    var Org = Request.QueryString["param1"];
+    if (Org.IsEmpty())
+    {
+        Response.Redirect("~/List/List");
+    }
+    var row = db.QuerySingle("SELECT * FROM Main_Database_For_Directory WHERE Organization = @0", Org);
+    if (IsPost && !Org.IsEmpty())
+    {
+        var deleteQueryString = "DELETE FROM Main_Database_For_Directory WHERE Organization=@0";
+        db.Execute(deleteQueryString, Org);
+        Response.Redirect("~/List/List");
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Organization</title>
+</head>
+<body>
+    <h2>Delete Organization - Confirmation</h2>
+    <form method="post" action="" name="form">
+        <hr />
+        <h4>Are you sure you want to delete the following Organization?</h4>
+
+        <p style="border:1px solid black; padding: 5px; font-size: 16px;">
+            <b>Organization Name:</b> @row.Organization <br />
+            <b>Phone:</b> @row.PhoneNumber <br />
+            <b>Email:</b> @row.Email <br />
+            <b>Street Address:</b> @row.StreetAddress <br />
+            <b>County:</b> @row.County <br />
+            <b>Country:</b> @row.Country <br />
+            <b>Postal Code:</b> @row.PostalCode <br />
+            <b>Services Offered:</b> @row.ServicesOffered <br />
+            <b>Type of Organization:</b> @row.TypeOfOrganization 
+        </p>
+        <p><input type="submit" value="Delete" class="btn btn-danger" /></p>
+    </form>
+</body>
+</html>

@@ -6,6 +6,7 @@ using System.Text;
 using System.Web.Mvc;
 using seniorDesign;
 using seniorDesign.Controllers;
+using MyTecBits_Bootstrap_Empty_MVC.Controllers;
 
 namespace seniorDesign.Tests.Controllers
 {

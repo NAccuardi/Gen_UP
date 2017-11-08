@@ -1,70 +1,179 @@
-﻿@{
+﻿@using WebMatrix.Data;
+@{
     ViewBag.Title = "GEN Provider Directory";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+@{
+   
+    var db = Database.Open("gen-provider-dbConnectionString");
+    var Org = Request.Form["Org"];
+    var Phone = Request.Form["Phone"];
+    var Email = Request.Form["Email"];
+    var Street = Request.Form["Street"];
+    var County = Request.Form["County"];
+    var Country = Request.Form["Country"];
+    var Postal = Request.Form["Postal"];
+    var Services = Request.Form["Services"];
+    var Type = Request.Form["Type"];
+    var InfoSource = true;
+    var Approved = true;
 
+
+
+    if (IsPost && Org != null)
+    {
+
+        var insertQuery = "INSERT INTO Main_Database_For_Directory (Organization, PhoneNumber, Email, StreetAddress, County, Country, PostalCode, ServicesOffered, TypeOfOrganization, InformationSource, ApprovedForDirectory) " +
+            "VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10)";
+        db.Execute(insertQuery, Org, Phone, Email, Street, County, Country, Postal, Services, Type, InfoSource, Approved);
+
+        Response.Redirect("~/Add/Add");
+
+    }
+}
+
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<style>
+    .col-md-12{
+        margin-bottom: 5px;
+    }
+</style>
 <div class="jumbotron">
     <h2>Add Providers </h2>
-	<p class="lead">Manually add or edit providers.</p>
+    <p class="lead">Manually add or edit providers.</p>
 </div>
 
-<form>
-  <div class="form-group">
-    <label for="orgName">Organization Name</label>
-    <input type="text" class="form-control" id="orgName" placeholder="Enter Name">
-  </div>
-  <div class="form-group">
-    <label for="address">Address</label>
-    <input type="text" class="form-control" id="address" placeholder="Enter Address">
-  </div>
-  <div class="form-group">
-    <label for="phone">Phone Number</label>
-    <input type="tel" class="form-control" id="phone" placeholder="Enter Phone #">
-  </div>
-  <div class="form-group">
-    <label for="email">Email Address</label>
-    <input type="email" class="form-control" id="email" placeholder="Enter Email">
-  </div>
 
-  <label for="service">Add Service</label>
-  <div class="input-group">
-    <input type="text" class="form-control" id="service" placeholder="Enter Service">
-    <div class="input-group-btn">
-      <button class="btn btn-warning" onclick= "addService()" type="button">
-        <i class="glyphicon glyphicon-plus"></i> Add Service
-      </button>
-    </div>
-  </div>
+@Html.ValidationSummary("Errors with your submission:")
 
-  <hr />
+<form method="post" action="">
+    <fieldset>
+        <div class="row">
 
-  <label for="serviceList"><u>List of Services</u></label>
-  <ul class="list-group" id="serviceList" style="width: 70%; overflow: scroll; max-height: 90px;">
-  </ul>
 
-  <hr />
-
-  <button type="button" onclick= "submit()" class="btn btn-success">Submit</button>
+            <div class="col-md-12">
+                <div class=" col-md-offset-1 col-md-2"><label>Organization:</label></div>
+                <div class="col-md-8"><input class="form-control" name="Org" type="text" size="100" value="@Org" /></div>
+            </div>
+            <div class="col-md-12">
+                <div class=" col-md-offset-1 col-md-2"><label>Phone Number:</label></div>
+                <div class="col-md-8"><input class="form-control" name="Phone" type="text" size="100" value="@Phone" /></div>
+            </div>
+            <div class="col-md-12">
+                <div class=" col-md-offset-1 col-md-2"><label>Email:</label></div>
+                <div class="col-md-8"><input class="form-control" name="Email" type="text" size="100" value="@Email" /></div>
+            </div>
+            <div class="col-md-12">
+                <div class=" col-md-offset-1 col-md-2"><label>Street Address:</label></div>
+                <div class="col-md-8"><input class="form-control" name="Street" type="text" size="100" value="@Street" /></div>
+            </div>
+            <div class="col-md-12">
+                <div class=" col-md-offset-1 col-md-2"><label>County:</label></div>
+                <div class="col-md-8"><input class="form-control" name="County" type="text" size="100" value="@County" /></div>
+            </div>
+            <div class="col-md-12">
+                <div class=" col-md-offset-1 col-md-2"><label>Country:</label></div>
+                <div class="col-md-8"><input class="form-control" name="Country" type="text" size="100" value="@Country" /></div>
+            </div>
+            <div class="col-md-12">
+                <div class=" col-md-offset-1 col-md-2"><label>Postal Code:</label></div>
+                <div class="col-md-8"><input class="form-control" name="Postal" type="text" size="100" value="@Postal" /></div>
+            </div>
+            <div class="col-md-12">
+                <div class=" col-md-offset-1 col-md-2"><label>Services Offered:</label></div>
+                <div class="col-md-8"><input class="form-control" name="Services" type="text" size="100" value="@Services" /></div>
+            </div>
+            <div class="col-md-12">
+                <div class=" col-md-offset-1 col-md-2"><label>Type of Organization:</label></div>
+                <div class="col-md-8"><input class="form-control" name="Type" type="text" size="100" value="@Type" /></div>
+            </div>
+            <div class="col-md-offset-3 col-md-12">
+                <label>&nbsp;</label>
+                <input type="submit" value="Submit" class="submit btn btn-success" />
+            </div>
+            
+       </div>
+</fieldset>
 </form>
 
-<script>
-    function addService(){
-	    var item = $("#service").val();
-	    $("#serviceList").append('<li class="list-group-item">'+item+'<a href="#" type="button" onclick="Delete(this);" class="btn btn-default" style="float: right; padding-top:2px; padding-bottom: 0px; font-size: 12px; "><span class="glyphicon glyphicon-trash"></span></a></li>');
-	    $("#service").val("");
 
-       
-	}
-    $(document).ready(function(){
-        
-    });
-	function Delete(currentEl){
-      currentEl.parentNode.parentNode.removeChild(currentEl.parentNode);
-      }
-	
+
+
+
+
+
+@*<form>
+   
+        <div class="form-group">
+            <label for="Org">Organization Name</label>
+            <input type="text" class="form-control" id="Org" placeholder="Enter Name">
+        </div>
+        <div class="form-group">
+            <label for="Street">Address</label>
+            <input type="text" class="form-control" id="Street" placeholder="Enter Address">
+        </div>
+        <div class="form-group">
+            <label for="Phone">Phone Number</label>
+            <input type="tel" class="form-control" id="Phone" placeholder="Enter Phone #">
+        </div>
+        <div class="form-group">
+            <label for="Email">Email Address</label>
+            <input type="email" class="form-control" id="Email" placeholder="Enter Email">
+        </div>
+        <div class="form-group">
+            <label for="County">County</label>
+            <input type="text" class="form-control" id="County" placeholder="Enter County" >
+        </div>
+        <div class="form-group">
+            <label for="Country">Country</label>
+            <input type="text" class="form-control" id="Country" placeholder="Enter Country">
+        </div>
+        <div class="form-group">
+            <label for="Postal">Postal Code</label>
+            <input type="text" class="form-control" id="Postal" placeholder="Enter Postal Code">
+        </div>
+        <div class="form-group">
+            <label for="Type">Type of Organization</label>
+            <input type="text" class="form-control" id="Type" placeholder="Enter Type of Organization" >
+        </div>
+        <label for="Services">Add Service</label>
+        <div class="input-group">
+            <input type="text" class="form-control" id="Services" placeholder="Enter Service">
+            <div class="input-group-btn">
+                <button class="btn btn-warning" onclick="addService()" type="button">
+                    <i class="glyphicon glyphicon-plus"></i> Add Service
+                </button>
+            </div>
+        </div>
+
+        <hr />
+
+        <label for="serviceList"><u>List of Services</u></label>
+        <ul class="list-group" id="serviceList" style="width: 70%; overflow: scroll; max-height: 90px;"></ul>
+
+        <hr />
+
+        <button type="submit">Submit</button>
     
-</script>
+</form>*@
 
+<script>
+    function addService() {
+        var item = $("#service").val();
+        $("#serviceList").append('<li class="list-group-item">' + item + '<a href="#" type="button" onclick="Delete(this);" class="btn btn-default" style="float: right; padding-top:2px; padding-bottom: 0px; font-size: 12px; "><span class="glyphicon glyphicon-trash"></span></a></li>');
+        $("#service").val("");
+
+
+    }
+    $(document).ready(function () {
+
+    });
+    function Delete(currentEl) {
+        currentEl.parentNode.parentNode.removeChild(currentEl.parentNode);
+    }
+
+
+</script>
 

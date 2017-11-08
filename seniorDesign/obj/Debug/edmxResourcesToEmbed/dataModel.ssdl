@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Web_ScrapperModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Web_Scrapper.dbo.Scrapped_Data' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Scrapped_Data">
+    <Key>
+      <PropertyRef Name="Orginization" />
+    </Key>
+    <Property Name="Orginization" Type="ntext" Nullable="false" />
+    <Property Name="Phone Number" Type="nchar" MaxLength="10" />
+    <Property Name="Email" Type="nchar" MaxLength="20" />
+    <Property Name="Street Address" Type="nchar" MaxLength="30" />
+    <Property Name="County" Type="nchar" MaxLength="10" />
+    <Property Name="State" Type="nchar" MaxLength="10" />
+    <Property Name="Country" Type="nchar" MaxLength="10" />
+    <Property Name="Services Offered" Type="text" />
+    <Property Name="Unique" Type="bit" />
+    <Property Name="Type of Orginizatoin" Type="ntext" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'Web_Scrapper.dbo.Unit_Tests_Log' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Unit_Tests_Log">
+          <Property Name="Date" Type="date" />
+          <Property Name="Time" Type="time" Precision="7" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Web_Scrapper.dbo.User_Inputted_Data' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="User_Inputted_Data">
+    <Key>
+      <PropertyRef Name="Orginization" />
+    </Key>
+    <Property Name="Orginization" Type="ntext" Nullable="false" />
+    <Property Name="Phone NUmber" Type="nchar" MaxLength="10" />
+    <Property Name="Email" Type="nchar" MaxLength="20" />
+    <Property Name="Street Address" Type="nchar" MaxLength="30" />
+    <Property Name="County" Type="nchar" MaxLength="10" />
+    <Property Name="State" Type="nchar" MaxLength="10" />
+    <Property Name="Country" Type="nchar" MaxLength="10" />
+    <Property Name="Services Offered" Type="text" />
+    <Property Name="Unique" Type="bit" />
+    <Property Name="Type of Orginization" Type="ntext" />
+  </EntityType>
+  <EntityContainer Name="Web_ScrapperModelStoreContainer">
+    <EntitySet Name="Scrapped_Data" EntityType="Self.Scrapped_Data" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[Scrapped_Data].[Orginization] AS [Orginization], 
+[Scrapped_Data].[Phone Number] AS [Phone Number], 
+[Scrapped_Data].[Email] AS [Email], 
+[Scrapped_Data].[Street Address] AS [Street Address], 
+[Scrapped_Data].[County] AS [County], 
+[Scrapped_Data].[State] AS [State], 
+[Scrapped_Data].[Country] AS [Country], 
+[Scrapped_Data].[Services Offered] AS [Services Offered], 
+[Scrapped_Data].[Unique] AS [Unique], 
+[Scrapped_Data].[Type of Orginizatoin] AS [Type of Orginizatoin]
+FROM [dbo].[Scrapped_Data] AS [Scrapped_Data]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="User_Inputted_Data" EntityType="Self.User_Inputted_Data" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[User_Inputted_Data].[Orginization] AS [Orginization], 
+[User_Inputted_Data].[Phone NUmber] AS [Phone NUmber], 
+[User_Inputted_Data].[Email] AS [Email], 
+[User_Inputted_Data].[Street Address] AS [Street Address], 
+[User_Inputted_Data].[County] AS [County], 
+[User_Inputted_Data].[State] AS [State], 
+[User_Inputted_Data].[Country] AS [Country], 
+[User_Inputted_Data].[Services Offered] AS [Services Offered], 
+[User_Inputted_Data].[Unique] AS [Unique], 
+[User_Inputted_Data].[Type of Orginization] AS [Type of Orginization]
+FROM [dbo].[User_Inputted_Data] AS [User_Inputted_Data]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Web_ScrapperModelStoreContainer" CdmEntityContainer="Web_ScrapperEntities">
+    <EntitySetMapping Name="Scrapped_Data">
+      <EntityTypeMapping TypeName="Web_ScrapperModel.Scrapped_Data">
+        <MappingFragment StoreEntitySet="Scrapped_Data">
+          <ScalarProperty Name="Orginization" ColumnName="Orginization" />
+          <ScalarProperty Name="Phone_Number" ColumnName="Phone Number" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Street_Address" ColumnName="Street Address" />
+          <ScalarProperty Name="County" ColumnName="County" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Services_Offered" ColumnName="Services Offered" />
+          <ScalarProperty Name="Unique" ColumnName="Unique" />
+          <ScalarProperty Name="Type_of_Orginizatoin" ColumnName="Type of Orginizatoin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_Inputted_Data">
+      <EntityTypeMapping TypeName="Web_ScrapperModel.User_Inputted_Data">
+        <MappingFragment StoreEntitySet="User_Inputted_Data">
+          <ScalarProperty Name="Orginization" ColumnName="Orginization" />
+          <ScalarProperty Name="Phone_NUmber" ColumnName="Phone NUmber" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Street_Address" ColumnName="Street Address" />
+          <ScalarProperty Name="County" ColumnName="County" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Services_Offered" ColumnName="Services Offered" />
+          <ScalarProperty Name="Unique" ColumnName="Unique" />
+          <ScalarProperty Name="Type_of_Orginization" ColumnName="Type of Orginization" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
