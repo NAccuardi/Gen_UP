@@ -5,25 +5,49 @@
 
 @{
     var db = Database.Open("gen-provider-dbConnectionString");
-    var Org = Request.QueryString["param1"];
+    var OrgID = Request.QueryString["param1"];
     var Comment = Request.Form["Comment"];
     var Name = Request.Form["Name"];
     var Verified = Request.Form["Verified"];
-    if (Org.IsEmpty())
+    if (OrgID.IsEmpty())
     {
         Response.Redirect("~/List/List");
     }
     //var row = db.QuerySingle("SELECT * FROM Comment_Table WHERE Organization = @0", Org);
-    var positiveReviews = db.QuerySingle("SELECT COUNT(*) AS PosRev FROM Comment_Table WHERE Verified = 'true' and Organization='" + Org + "'");
-    
-    if (IsPost && Org != null)
+    var positiveReviews = db.QuerySingle("SELECT COUNT(*) AS PosRev FROM Comment_Table WHERE Verified = 'true' and OrgID='" + OrgID + "'");
+    var posRev = db.QueryValue("select count(*) from Comment_Table where Verified = 'true' and OrgID='"+OrgID+"'");
+    var allRev = db.QueryValue("select count(*) from Comment_Table where OrgID='"+OrgID+"'");
+
+    var num = Convert.ToDecimal(posRev);
+    var den = Convert.ToDecimal(allRev);
+    var rating = 0;
+    if (Convert.ToInt16(den) != 0) {
+        rating = Convert.ToInt16((num / den) * 100);
+    }
+
+    var styleRating = (rating >= 75) ? "color: green" : "color: #c12e2a";
+    if(allRev == 0)
     {
+        styleRating = "color: #778899";
+    }
 
-        var insertQuery = "INSERT INTO Comment_Table (Organization, CommentsAboutOrganization, OrgName, Verified) " +
-            "VALUES (@0, @1, @2, @3)";
-        db.Execute(insertQuery, Org, Comment, Name, Verified);
 
-        Response.Redirect("~/List/List");
+    var orgName = db.QueryValue("SELECT Organization FROM Main_Database_For_Directory WHERE OrgID ='" + OrgID +"'");
+    if (IsPost && OrgID != null)
+    {
+        try {
+
+            var insertQuery = "INSERT INTO Comment_Table (OrgID, CommentsAboutOrganization, OrgName, Verified) " +
+                "VALUES (@0, @1, @2, @3)";
+            db.Execute(insertQuery, OrgID, Comment, Name, Verified);
+
+            Response.Redirect("~/List/List");
+
+        }
+        catch (Exception ex)
+        {
+            Response.Write("<script>alert('Something went wrong.\\nSome fields may be filled in incorrectly.')</script>");
+        }
 
     }
 }
@@ -31,21 +55,33 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <link rel="stylesheet" href="/resources/demos/style.css">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <title>Comments</title>
 </head>
 <body>
     @Html.ValidationSummary("Errors with your submission:")
    
     <div style="padding-left:5px; border:3px double black; margin-bottom: 10px; background-color: #fafafa ">
-        <h4>Comments: <u>@Org</u></h4>
+        <h4>Comments: <u>@orgName</u></h4>
     </div>
     <div>
-        <p>Rating: </p>
+        <p style="font-size: 16px"><b>Rating:  <u style="@styleRating"><span> @rating%</span></u></b></p>
     </div>
     
     <div>
         <ul class="list-group" id="listOfComments" style="overflow: scroll; max-height: 250px; width: 100%;">
-            @foreach (var row1 in db.Query("Select * FROM Comment_Table WHERE Organization='" + Org + "'"))
+            @foreach (var row1 in db.Query("Select * FROM Comment_Table WHERE OrgID='" + OrgID + "'"))
             {
                 if (row1.Verified == null)
                 {

@@ -5,16 +5,16 @@
 
 @{
     var db = Database.Open("gen-provider-dbConnectionString");
-    var Org = Request.QueryString["param1"];
-    if (Org.IsEmpty())
+    var OrgID = Request.QueryString["param1"];
+    if (OrgID.IsEmpty())
     {
         Response.Redirect("~/Admin/Admin");
     }
-    var row = db.QuerySingle("SELECT * FROM Main_Database_For_Directory WHERE Organization = @0", Org);
-    if (IsPost && !Org.IsEmpty())
+    var row = db.QuerySingle("SELECT * FROM Main_Database_For_Directory WHERE OrgID = @0", OrgID);
+    if (IsPost && !OrgID.IsEmpty())
     {
-        var approveQueryString = "UPDATE Main_Database_For_Directory SET ApprovedForDirectory= 'true' WHERE Organization=@0";
-        db.Execute(approveQueryString, Org);
+        var approveQueryString = "UPDATE Main_Database_For_Directory SET ApprovedForDirectory= 'true' WHERE OrgID=@0";
+        db.Execute(approveQueryString, OrgID);
         Response.Redirect("~/Admin/Admin");
     }
 }
@@ -34,10 +34,8 @@
             <b>Organization Name:</b> @row.Organization <br />
             <b>Phone:</b> @row.PhoneNumber <br />
             <b>Email:</b> @row.Email <br />
-            <b>Street Address:</b> @row.StreetAddress <br />
-            <b>County:</b> @row.County <br />
-            <b>Country:</b> @row.Country <br />
-            <b>Postal Code:</b> @row.PostalCode <br />
+            <b>Address:</b> @row.StreetAddress <br />
+            <b>Fax:</b> @row.Fax <br />
             <b>Services Offered:</b> @row.ServicesOffered <br />
             <b>Type of Organization:</b> @row.TypeOfOrganization
         </p>
