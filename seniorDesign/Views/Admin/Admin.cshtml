@@ -49,13 +49,12 @@
                         <th>Delete</th>
                         <th>Organization</th>
                         <th>Address</th>
-                        <th>County</th>
-                        <th>Country</th>
-                        <th>Postal Code</th>
                         <th>Phone</th>
+                        <th>Fax</th>
                         <th>Email</th>
                         <th>Services</th>
                         <th>Authority</th>
+                        <th>Websites</th>
                     </tr>
                     
                 </thead>
@@ -64,18 +63,18 @@
                     {
                         <tr>
 
-                            <td><a href="@Href("~/ApproveAdmin/ApproveAdmin?param1="+ row.Organization)" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></a></td>
-                            <td><a href="@Href("~/DeleteAdmin/DeleteAdmin?param1="+ row.Organization)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
+                            <td><a href="@Href("~/ApproveAdmin/ApproveAdmin?param1="+ row.OrgID)" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></a></td>
+                            <td><a href="@Href("~/DeleteAdmin/DeleteAdmin?param1="+ row.OrgID)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
 
                             <td>@row.Organization</td>
                             <td>@row.StreetAddress</td>
-                            <td>@row.County</td>
-                            <td>@row.Country</td>
-                            <td>@row.PostalCode</td>
                             <td>@row.PhoneNumber</td>
+                            <td>@row.Fax</td>
                             <td>@row.Email</td>
                             <td>@row.ServicesOffered</td>
                             <td>@row.TypeOfOrganization</td>
+                            <td><a href="@Href("~/ShowAll/ShowAll?param1="+ row.OrgID)" class="btn btn-default"><span class="glyphicon glyphicon-circle-arrow-right"></span></a></td>
+
 
                         </tr>
                     }
