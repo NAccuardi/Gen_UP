@@ -1,5 +1,3 @@
-C:\Users\Melanie Martinell\Gen_UP\seniorDesign.Tests\obj\Debug\seniorDesign.Tests.csprojResolveAssemblyReference.cache
-C:\Users\Melanie Martinell\Gen_UP\seniorDesign.Tests\obj\Debug\seniorDesign.Tests.csproj.CoreCompileInputs.cache
 C:\Users\Melanie Martinell\Gen_UP\seniorDesign.Tests\bin\Debug\seniorDesign.Tests.dll
 C:\Users\Melanie Martinell\Gen_UP\seniorDesign.Tests\bin\Debug\seniorDesign.Tests.pdb
 C:\Users\Melanie Martinell\Gen_UP\seniorDesign.Tests\bin\Debug\Microsoft.Web.Infrastructure.dll
@@ -22,5 +20,7 @@ C:\Users\Melanie Martinell\Gen_UP\seniorDesign.Tests\bin\Debug\System.Web.WebPag
 C:\Users\Melanie Martinell\Gen_UP\seniorDesign.Tests\bin\Debug\System.Web.WebPages.Razor.xml
 C:\Users\Melanie Martinell\Gen_UP\seniorDesign.Tests\bin\Debug\System.Web.Mvc.xml
 C:\Users\Melanie Martinell\Gen_UP\seniorDesign.Tests\bin\Debug\EntityFramework.xml
+C:\Users\Melanie Martinell\Gen_UP\seniorDesign.Tests\obj\Debug\seniorDesign.Tests.csprojResolveAssemblyReference.cache
+C:\Users\Melanie Martinell\Gen_UP\seniorDesign.Tests\obj\Debug\seniorDesign.Tests.csproj.CoreCompileInputs.cache
 C:\Users\Melanie Martinell\Gen_UP\seniorDesign.Tests\obj\Debug\seniorDesign.Tests.dll
 C:\Users\Melanie Martinell\Gen_UP\seniorDesign.Tests\obj\Debug\seniorDesign.Tests.pdb
