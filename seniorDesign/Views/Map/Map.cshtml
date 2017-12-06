@@ -22,6 +22,8 @@
 
     var idCount = 0;
 
+    var query = "Select distinct Organization, Twitter, StreetAddress, TypeOfOrganization, PhoneNumber, Email, OrgID FROM Main_Database_For_Directory where OrgID = '5'";
+
     }
 
 
@@ -30,17 +32,17 @@
 <script>
 
 
-    @foreach (var row in db.Query("Select distinct Organization, Twitter, StreetAddress, TypeOfOrganization, PhoneNumber, Email, OrgID FROM Main_Database_For_Directory where OrgID = '7'"))
+    @foreach (var row1 in db.Query(query))
     {
         locations.Add(new List<string>());
-        locations[count].Add(@row.Organization);
-        locations[count].Add(@row.StreetAddress);
-        locations[count].Add(@row.Twitter);
-        locations[count].Add(@row.TypeOfOrganization);
-        locations[count].Add(@row.PhoneNumber);
-        locations[count].Add(@row.Email);
-        locations[count].Add(@row.OrgID.ToString());
-        id[count] = row.OrgID;
+        locations[count].Add(@row1.Organization);
+        locations[count].Add(@row1.StreetAddress);
+        locations[count].Add(@row1.Twitter);
+        locations[count].Add(@row1.TypeOfOrganization);
+        locations[count].Add(@row1.PhoneNumber);
+        locations[count].Add(@row1.Email);
+        locations[count].Add(@row1.OrgID.ToString());
+        id[count] = row1.OrgID;
         count++;
 
 

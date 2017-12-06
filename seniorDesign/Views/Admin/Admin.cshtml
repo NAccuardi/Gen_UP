@@ -9,7 +9,7 @@
 }
 @{
     var db = Database.Open("gen-provider-dbConnectionString");
-    var queryString = "SELECT * FROM Main_Database_For_Directory where ApprovedForDirectory='false' or ApprovedForDirectory is null";
+    var queryString = "SELECT * FROM Main_Database_For_Directory where ApprovedForDirectory='false' or ApprovedForDirectory is null order by Organization";
     
 }
 
