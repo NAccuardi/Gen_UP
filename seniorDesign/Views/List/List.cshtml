@@ -94,7 +94,7 @@
                     </th>
                     <th>
                         <div class="form-group has-feedback">
-                            <input type="text" id="phone" onkeyup="search(6)" class="form-control" />
+                            <input type="text" id="phone" onkeyup="search(6)" data-inputmask="'mask': '(999) 999-9999'" class="form-control" />
                             <i class="glyphicon glyphicon-search form-control-feedback"></i>
                         </div>
                     </th>
@@ -234,6 +234,7 @@
 
 $(document).ready(function () {
 
+    $(":input").inputmask();
 
     updateBadge();
     updateButtonColor();
