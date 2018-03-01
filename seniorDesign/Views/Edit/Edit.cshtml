@@ -27,8 +27,9 @@
     var Twitter = "";
     var Services = "";
     var Type = "";
-    //var InfoSource = true;
-    //var Approved = true;
+    var InfoSource = true;
+    var Approved = true;
+    var EditedOrg = true;
 
     if (OrgID.IsEmpty())
     {
@@ -40,7 +41,7 @@
     if (IsPost)
     {
         var updateQueryString =
-            "UPDATE Main_Database_For_Directory SET Organization=@0, PhoneNumber=@1, Email=@2, StreetAddress=@3, Fax=@4, Facebook=@5, Google=@6, Youtube=@7, Instagram=@8, Pinterest=@9, CharityNavigator=@10, Linkedin=@11, Vimeo=@12, Guidestar=@13, Twitter=@14, ServicesOffered=@15, TypeOfOrganization=@16 WHERE OrgID=@17";
+            "UPDATE Main_Database_For_Directory SET Organization=@0, PhoneNumber=@1, Email=@2, StreetAddress=@3, Fax=@4, Facebook=@5, Google=@6, Youtube=@7, Instagram=@8, Pinterest=@9, CharityNavigator=@10, Linkedin=@11, Vimeo=@12, Guidestar=@13, Twitter=@14, ServicesOffered=@15, TypeOfOrganization=@16, EditedOrg='1' WHERE OrgID=@17";
         Organization = Request["Organization"];
         Phone = Request["Phone"];
         Email = Request["Email"];
@@ -61,7 +62,13 @@
         try
         {
 
-            db.Execute(updateQueryString, Organization, Phone, Email, Street, Fax, Facebook, Google, Youtube, Instagram, Pinterest, CharityNavigator, Linkedin, Vimeo, Guidestar, Twitter, Services, Type, OrgID);
+            //db.Execute(updateQueryString, Organization, Phone, Email, Street, Fax, Facebook, Google, Youtube, Instagram, Pinterest, CharityNavigator, Linkedin, Vimeo, Guidestar, Twitter, Services, Type, OrgID);
+            var insertQuery = "INSERT INTO Main_Database_For_Directory (Organization, PhoneNumber, Email, StreetAddress, Fax, Facebook, Google, Youtube, Instagram, Pinterest, CharityNavigator, Linkedin, Vimeo, Guidestar, Twitter, ServicesOffered, TypeOfOrganization, InformationSource, ApprovedForDirectory, OriginalOrg, EditedOrg) " +
+                "VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15, @16, @17, @18, @19, @20)";
+            db.Execute(insertQuery, Organization, Phone, Email, Street, Fax, Facebook, Google, Youtube, Instagram, Pinterest, CharityNavigator, Linkedin, Vimeo, Guidestar, Twitter, Services, Type, InfoSource, Approved, OrgID, EditedOrg);
+
+            //db.Execute(insertQuery, Org, Phone, Email, Street, Fax, Facebook, Google, Youtube, Instagram, Pinterest, CharityNavigator, Linkedin, Vimeo, Guidestar, Twitter, Services, Type, InfoSource, Approved);
+
             Response.Redirect(@Href("~/List/List"));
         }
         catch (Exception ex)

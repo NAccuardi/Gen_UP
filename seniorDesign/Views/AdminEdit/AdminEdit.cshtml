@@ -3,14 +3,15 @@
 @using System.Configuration;
 @using System.Data.SqlClient;
 @using WebMatrix.Data;
-
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
 @{
     var db = Database.Open("gen-provider-dbConnectionString");
-    var queryString = "SELECT * FROM Main_Database_For_Directory where ApprovedForDirectory='false' or ApprovedForDirectory is null and EditedOrg='0' order by Organization";
-    
+    var queryString = "SELECT * FROM Edit_Approval_Table order by Organization";
+
 }
 
 <!DOCTYPE html>
@@ -56,7 +57,7 @@
                         <th>Authority</th>
                         <th>Websites</th>
                     </tr>
-                    
+
                 </thead>
                 <tbody>
                     @foreach (var row in db.Query(queryString))
@@ -84,7 +85,7 @@
 
             </table>
         </div>
-        </div>
+    </div>
 </body>
 </html>
 <script>

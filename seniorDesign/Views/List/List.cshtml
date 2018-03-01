@@ -17,7 +17,7 @@
 @{ 
     var db = Database.Open("gen-provider-dbConnectionString");
     var selectQueryString = "SELECT * FROM Comment_Table";
-    var queryString = "SELECT * FROM Main_Database_For_Directory where ApprovedForDirectory='true' order by Organization";
+    var queryString = "SELECT * FROM Main_Database_For_Directory where ApprovedForDirectory='true' and EditedOrg='false' order by Organization";
     var rows = db.Query(selectQueryString);
 
     

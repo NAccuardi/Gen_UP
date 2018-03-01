@@ -101,12 +101,16 @@
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AdminMainController.cs" />
     <Compile Include="Controllers\ApproveAdminController.cs" />
+    <Compile Include="Controllers\ApproveEditAdminController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\DataController.cs" />
     <Compile Include="Controllers\DeleteAdminController.cs" />
     <Compile Include="Controllers\DeleteController.cs" />
+    <Compile Include="Controllers\DeleteEditAdminController.cs" />
     <Compile Include="Controllers\DisplayController.cs" />
+    <Compile Include="Controllers\EditAdminController.cs" />
     <Compile Include="Controllers\EditController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Main_Database_For_DirectoryController.cs" />
@@ -257,6 +261,10 @@
     <Content Include="Views\Comments\Comments.cshtml" />
     <Content Include="Views\ShowAll\ShowAll.cshtml" />
     <Content Include="Views\Display\Display.cshtml" />
+    <Content Include="Views\EditAdmin\EditAdmin.cshtml" />
+    <Content Include="Views\AdminMain\AdminMain.cshtml" />
+    <Content Include="Views\DeleteEditAdmin\DeleteEditAdmin.cshtml" />
+    <Content Include="Views\ApproveEditAdmin\ApproveEditAdmin.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
