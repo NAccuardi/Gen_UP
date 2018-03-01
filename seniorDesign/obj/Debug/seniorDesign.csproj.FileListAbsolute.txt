@@ -61,3 +61,4 @@ C:\Users\Melanie Martinell\Gen_UP\seniorDesign\bin\WebMatrix.Data.xml
 C:\Users\Melanie Martinell\Gen_UP\seniorDesign\obj\Debug\seniorDesign.csproj.CoreCompileInputs.cache
 C:\Users\Melanie Martinell\Gen_UP\seniorDesign\obj\Debug\seniorDesign.dll
 C:\Users\Melanie Martinell\Gen_UP\seniorDesign\obj\Debug\seniorDesign.pdb
+C:\Users\Melanie Martinell\Gen_UP\seniorDesign\obj\Debug\seniorDesign.csprojResolveAssemblyReference.cache

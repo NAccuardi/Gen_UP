@@ -1,5 +1,4 @@
 import pyodbc
-<<<<<<< HEAD
 import json
 
 server = 'gen-sql.database.windows.net'
@@ -33,41 +32,6 @@ def UnitTest_PrintRows():
     except pyodbc.Error:
         print ("ERROR IN CONNECTION")
     return False
-=======
-import json
-
-server = 'gen-sql.database.windows.net'
-database = 'gen-provider-db'
-username = 'up_user'
-password = 'UPGENSQLSecurity2017!'
-driver = '{ODBC Driver 13 for SQL Server}'
-ConnectString = 'DRIVER=' + driver + ';PORT=1433;SERVER=' + server + ';PORT=1433;DATABASE=' + database + ';UID=' + username + ';PWD=' + password
-
-def UnitTest_CheckConnection():
-    try:
-        cnxn = pyodbc.connect(ConnectString,timeout=3)
-        print("Connection Achieved.")
-        print("")
-        return True
-    except pyodbc.Error:
-        print ("ERROR IN CONNECTION")
-    return False
-
-
-def UnitTest_PrintRows():
-
-    try:
-        cnxn = pyodbc.connect(ConnectString,timeout=3)
-        cursor = cnxn.cursor()
-        cursor.execute("select * from Main_Database_For_Directory")
-        for row in cursor:
-            print('row = %r' % (row,))
-        print("")
-        return  True
-    except pyodbc.Error:
-        print ("ERROR IN CONNECTION")
-    return False
->>>>>>> branch1
 
 def UnitTest_InsertData():
     try:
@@ -164,20 +128,11 @@ def UnitTest_Services():
         print ("ERROR IN CONNECTION")
         return False
 
-<<<<<<< HEAD
                        
 #UnitTest_CheckConnection()
-=======
-                       
-#UnitTest_CheckConnection()
->>>>>>> branch1
 #UnitTest_PrintRows()
 UnitTest_DeleteData()
 #UnitTest_InsertData()
 #UnitTest_OrgType()
 #UnitTest_Services()
-<<<<<<< HEAD
 
-=======
-
->>>>>>> branch1
