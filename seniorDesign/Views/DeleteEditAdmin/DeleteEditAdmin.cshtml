@@ -1,0 +1,46 @@
+﻿@using WebMatrix.Data;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var db = Database.Open("gen-provider-dbConnectionString");
+    var OrgID = Request.QueryString["param1"];
+    if (OrgID.IsEmpty())
+    {
+        Response.Redirect("~/Admin/Admin");
+    }
+    var row = db.QuerySingle("SELECT * FROM Main_Database_For_Directory WHERE OrgID = @0", OrgID);
+    if (IsPost && !OrgID.IsEmpty())
+    {
+        var deleteQueryString = "DELETE FROM Main_Database_For_Directory WHERE OrgID=@0";
+        db.Execute(deleteQueryString, OrgID);
+        Response.Redirect("~/EditAdmin/EditAdmin");
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Organization</title>
+</head>
+<body>
+    <h2>Deny Edit Request - Confirmation</h2>
+    <form method="post" action="" name="form">
+        <hr />
+        <h4>Are you sure you want to delete the following Edited Organization?</h4>
+
+        <p style="border:1px solid black; padding: 5px; font-size: 16px;">
+            <b>Organization Name:</b> @row.Organization <br />
+            <b>Phone:</b> @row.PhoneNumber <br />
+            <b>Email:</b> @row.Email <br />
+            <b>Street Address:</b> @row.StreetAddress <br />
+            <b>Fax:</b> @row.Fax <br />
+            <b>Services Offered:</b> @row.ServicesOffered <br />
+            <b>Type of Organization:</b> @row.TypeOfOrganization
+        </p>
+        <p><input type="submit" value="Delete" class="btn btn-danger" /></p>
+    </form>
+</body>
+</html>
+
+

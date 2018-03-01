@@ -1,7 +1,4 @@
-﻿@using System;
-@using System.Data;
-@using System.Configuration;
-@using System.Data.SqlClient;
+﻿
 @using WebMatrix.Data;
 
 @{
@@ -9,8 +6,8 @@
 }
 @{
     var db = Database.Open("gen-provider-dbConnectionString");
-    var queryString = "SELECT * FROM Main_Database_For_Directory where ApprovedForDirectory='false' or ApprovedForDirectory is null and EditedOrg='0' order by Organization";
-    
+    var queryString = "SELECT * FROM Main_Database_For_Directory where EditedOrg='true' order by Organization";
+
 }
 
 <!DOCTYPE html>
@@ -56,15 +53,15 @@
                         <th>Authority</th>
                         <th>Websites</th>
                     </tr>
-                    
+
                 </thead>
                 <tbody>
                     @foreach (var row in db.Query(queryString))
                     {
                         <tr>
 
-                            <td><a href="@Href("~/ApproveAdmin/ApproveAdmin?param1="+ row.OrgID)" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></a></td>
-                            <td><a href="@Href("~/DeleteAdmin/DeleteAdmin?param1="+ row.OrgID)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
+                            <td><a href="@Href("~/ApproveEditAdmin/ApproveEditAdmin?param1="+ row.OrgID)" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></a></td>
+                            <td><a href="@Href("~/DeleteEditAdmin/DeleteEditAdmin?param1="+ row.OrgID)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
 
                             <td>@row.Organization</td>
                             <td>@row.StreetAddress</td>
@@ -84,7 +81,7 @@
 
             </table>
         </div>
-        </div>
+    </div>
 </body>
 </html>
 <script>
@@ -113,3 +110,4 @@
         alert("delete " + org);
     }
 </script>
+

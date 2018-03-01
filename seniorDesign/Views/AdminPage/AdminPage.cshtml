@@ -1,0 +1,37 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Admin Page</title>
+</head>
+<body>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <div class="jumbotron">
+        <h2>Admin Page</h2>
+        <p class="lead">Approve/Delete Data</p>
+    </div>
+    <div style="background-color: #c5ccd3; padding: 50px; border: 3px solid black;">
+        <a href="@Href("~/Admin/Admin")" class="btn btn-default" style="padding-left: 2px; padding-right: 2px; padding-top: 20px; padding-bottom: 20px; width: 250px; font-size: 15px;"><span class="glyphicon glyphicon-th-large" style="font-size: 15px;"></span> Scraped Data</a>
+        <br />
+        <br />
+        <a href="@Href("~/AdminEdit/AdminEdit")" class="btn btn-default" style="padding-left: 2px; padding-right: 2px; padding-top: 20px; padding-bottom: 20px; width: 250px; font-size: 15px;"><span class="glyphicon glyphicon-th-large" style="font-size: 15px;"></span> Edited Data</a>
+    </div>
+
+</body>
+               
+</html>
+
+
