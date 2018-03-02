@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Comment_Table">
+    <Key>
+      <PropertyRef Name="CommentID" />
+    </Key>
+    <Property Name="CommentsAboutOrganization" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="OrgName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Verified" Type="Boolean" />
+    <Property Name="CommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrgID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Main_Database_For_Directory" Relationship="Self.FK__Comment_T__OrgID__5CD6CB2B" FromRole="Comment_Table" ToRole="Main_Database_For_Directory" />
+  </EntityType>
+  <EntityType Name="Main_Database_For_Directory">
+    <Key>
+      <PropertyRef Name="OrgID" />
+    </Key>
+    <Property Name="Organization" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="StreetAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="County" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PostalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ServicesOffered" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="TypeOfOrganization" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="InformationSource" Type="Boolean" />
+    <Property Name="ApprovedForDirectory" Type="Boolean" />
+    <Property Name="Verified" Type="Boolean" />
+    <Property Name="Fax" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="Facebook" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Google" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Youtube" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Instagram" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Pinterest" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CharityNavigator" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Linkedin" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Vimeo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Guidestar" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Twitter" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="OrgID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EditedOrg" Type="Boolean" Nullable="false" />
+    <Property Name="OriginalOrg" Type="Boolean" />
+    <NavigationProperty Name="Comment_Table" Relationship="Self.FK__Comment_T__OrgID__5CD6CB2B" FromRole="Main_Database_For_Directory" ToRole="Comment_Table" />
+  </EntityType>
+  <Association Name="FK__Comment_T__OrgID__5CD6CB2B">
+    <End Role="Main_Database_For_Directory" Type="Self.Main_Database_For_Directory" Multiplicity="1" />
+    <End Role="Comment_Table" Type="Self.Comment_Table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Main_Database_For_Directory">
+        <PropertyRef Name="OrgID" />
+      </Principal>
+      <Dependent Role="Comment_Table">
+        <PropertyRef Name="OrgID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Comment_Table" EntityType="Self.Comment_Table" />
+    <EntitySet Name="Main_Database_For_Directory" EntityType="Self.Main_Database_For_Directory" />
+    <AssociationSet Name="FK__Comment_T__OrgID__5CD6CB2B" Association="Self.FK__Comment_T__OrgID__5CD6CB2B">
+      <End Role="Main_Database_For_Directory" EntitySet="Main_Database_For_Directory" />
+      <End Role="Comment_Table" EntitySet="Comment_Table" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

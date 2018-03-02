@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using seniorDesign;
-
+using seniorDesign.Models;
 
 namespace MyTecBits_Bootstrap_Empty_MVC.Controllers
 {
@@ -14,7 +14,7 @@ namespace MyTecBits_Bootstrap_Empty_MVC.Controllers
         // GET: Admin
         public ActionResult Admin()
         {
-            Entities entities = new Entities();
+            Entities1 entities = new Entities1();
             return View(from Main_Database_For_Directory in entities.Main_Database_For_Directory.Take(10) select Main_Database_For_Directory);
         }
     }

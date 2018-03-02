@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Comment_Table">
+    <Key>
+      <PropertyRef Name="CommentID" />
+    </Key>
+    <Property Name="CommentsAboutOrganization" Type="text" Nullable="false" />
+    <Property Name="OrgName" Type="varchar" MaxLength="100" />
+    <Property Name="Verified" Type="bit" />
+    <Property Name="CommentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrgID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Main_Database_For_Directory">
+    <Key>
+      <PropertyRef Name="OrgID" />
+    </Key>
+    <Property Name="Organization" Type="varchar" MaxLength="100" />
+    <Property Name="PhoneNumber" Type="char" MaxLength="15" />
+    <Property Name="Email" Type="varchar" MaxLength="300" />
+    <Property Name="StreetAddress" Type="varchar" MaxLength="500" />
+    <Property Name="County" Type="text" />
+    <Property Name="Country" Type="text" />
+    <Property Name="PostalCode" Type="varchar" MaxLength="10" />
+    <Property Name="ServicesOffered" Type="varchar" MaxLength="500" />
+    <Property Name="TypeOfOrganization" Type="varchar" MaxLength="200" />
+    <Property Name="InformationSource" Type="bit" />
+    <Property Name="ApprovedForDirectory" Type="bit" />
+    <Property Name="Verified" Type="bit" />
+    <Property Name="Fax" Type="char" MaxLength="15" />
+    <Property Name="Facebook" Type="varchar" MaxLength="250" />
+    <Property Name="Google" Type="varchar" MaxLength="250" />
+    <Property Name="Youtube" Type="varchar" MaxLength="500" />
+    <Property Name="Instagram" Type="varchar" MaxLength="250" />
+    <Property Name="Pinterest" Type="varchar" MaxLength="250" />
+    <Property Name="CharityNavigator" Type="varchar" MaxLength="250" />
+    <Property Name="Linkedin" Type="varchar" MaxLength="250" />
+    <Property Name="Vimeo" Type="varchar" MaxLength="250" />
+    <Property Name="Guidestar" Type="varchar" MaxLength="250" />
+    <Property Name="Twitter" Type="varchar" MaxLength="250" />
+    <Property Name="OrgID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EditedOrg" Type="bit" Nullable="false" />
+    <Property Name="OriginalOrg" Type="bit" />
+  </EntityType>
+  <Association Name="FK__Comment_T__OrgID__5CD6CB2B">
+    <End Role="Main_Database_For_Directory" Type="Self.Main_Database_For_Directory" Multiplicity="1" />
+    <End Role="Comment_Table" Type="Self.Comment_Table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Main_Database_For_Directory">
+        <PropertyRef Name="OrgID" />
+      </Principal>
+      <Dependent Role="Comment_Table">
+        <PropertyRef Name="OrgID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="Comment_Table" EntityType="Self.Comment_Table" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Main_Database_For_Directory" EntityType="Self.Main_Database_For_Directory" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Comment_T__OrgID__5CD6CB2B" Association="Self.FK__Comment_T__OrgID__5CD6CB2B">
+      <End Role="Main_Database_For_Directory" EntitySet="Main_Database_For_Directory" />
+      <End Role="Comment_Table" EntitySet="Comment_Table" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

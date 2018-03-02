@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Entities1">
+    <EntitySetMapping Name="Comment_Table">
+      <EntityTypeMapping TypeName="Model1.Comment_Table">
+        <MappingFragment StoreEntitySet="Comment_Table">
+          <ScalarProperty Name="CommentsAboutOrganization" ColumnName="CommentsAboutOrganization" />
+          <ScalarProperty Name="OrgName" ColumnName="OrgName" />
+          <ScalarProperty Name="Verified" ColumnName="Verified" />
+          <ScalarProperty Name="CommentID" ColumnName="CommentID" />
+          <ScalarProperty Name="OrgID" ColumnName="OrgID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Main_Database_For_Directory">
+      <EntityTypeMapping TypeName="Model1.Main_Database_For_Directory">
+        <MappingFragment StoreEntitySet="Main_Database_For_Directory">
+          <ScalarProperty Name="Organization" ColumnName="Organization" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
+          <ScalarProperty Name="County" ColumnName="County" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="ServicesOffered" ColumnName="ServicesOffered" />
+          <ScalarProperty Name="TypeOfOrganization" ColumnName="TypeOfOrganization" />
+          <ScalarProperty Name="InformationSource" ColumnName="InformationSource" />
+          <ScalarProperty Name="ApprovedForDirectory" ColumnName="ApprovedForDirectory" />
+          <ScalarProperty Name="Verified" ColumnName="Verified" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+          <ScalarProperty Name="Google" ColumnName="Google" />
+          <ScalarProperty Name="Youtube" ColumnName="Youtube" />
+          <ScalarProperty Name="Instagram" ColumnName="Instagram" />
+          <ScalarProperty Name="Pinterest" ColumnName="Pinterest" />
+          <ScalarProperty Name="CharityNavigator" ColumnName="CharityNavigator" />
+          <ScalarProperty Name="Linkedin" ColumnName="Linkedin" />
+          <ScalarProperty Name="Vimeo" ColumnName="Vimeo" />
+          <ScalarProperty Name="Guidestar" ColumnName="Guidestar" />
+          <ScalarProperty Name="Twitter" ColumnName="Twitter" />
+          <ScalarProperty Name="OrgID" ColumnName="OrgID" />
+          <ScalarProperty Name="EditedOrg" ColumnName="EditedOrg" />
+          <ScalarProperty Name="OriginalOrg" ColumnName="OriginalOrg" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -14,7 +14,12 @@ namespace seniorDesign
     
     public partial class Comment_Table
     {
-        public string Organization { get; set; }
         public string CommentsAboutOrganization { get; set; }
+        public string OrgName { get; set; }
+        public Nullable<bool> Verified { get; set; }
+        public int CommentID { get; set; }
+        public int OrgID { get; set; }
+    
+        public virtual Main_Database_For_Directory Main_Database_For_Directory { get; set; }
     }
 }

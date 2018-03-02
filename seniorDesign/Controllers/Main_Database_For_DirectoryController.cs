@@ -14,7 +14,7 @@ namespace seniorDesign.Controllers
 {
     public class Main_Database_For_DirectoryController : Controller
     {
-        private Entities db = new Entities();
+        private Entities1 db = new Entities1();
 
         // GET: Main_Database_For_Directory
         public ActionResult Index()
