@@ -40,10 +40,10 @@
         <p class="lead">Approve/Delete Data</p>
     </div>
 
-    <canvas id="barChart" style="max-width: 500px;"></canvas>
+    <canvas id="barChart" style="max-width: 600px;"></canvas>
     <br />
     
-        <a href="@Href("~/Admin/Admin")" class="btn btn-default" style="padding-left: 2px; padding-right: 2px; padding-top: 20px; padding-bottom: 20px; width: 250px; font-size: 15px;"><span class="glyphicon glyphicon-th-large" style="font-size: 15px;"></span> Scraped Data</a>
+        <a href="@Href("~/Admin/Admin")" class="btn btn-default" style="padding-left: 2px; padding-right: 2px; padding-top: 20px; padding-bottom: 20px; width: 250px; font-size: 15px; margin-left: 50px;"><span class="glyphicon glyphicon-th-large" style="font-size: 15px;"></span> Scraped Data</a>
         
         <a href="@Href("~/EditAdmin/EditAdmin")" class="btn btn-default" style="padding-left: 2px; padding-right: 2px; padding-top: 20px; padding-bottom: 20px; width: 250px; font-size: 15px;"><span class="glyphicon glyphicon-th-large" style="font-size: 15px;"></span> Edited Data</a>
     
@@ -63,7 +63,7 @@
         var myBarChart = new Chart(chart, {
             type: 'bar',
             data: {
-                labels: ['Scraped Data', 'Edited Data'],
+                labels: ['Web Scraped Data', 'User Edited Data'],
                 datasets: [{
                     label: 'Data Waiting to be Added',
                     data: [@scapedNum, @editedNum, 0],
