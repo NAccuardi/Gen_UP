@@ -1,6 +1,20 @@
-﻿@{
+﻿@using System;
+@using System.Data;
+@using System.Configuration;
+@using System.Data.SqlClient;
+@using WebMatrix.Data;
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@{
+    var db = Database.Open("gen-provider-dbConnectionString");
+    var scapedNum = db.QueryValue("select count(*) from Main_Database_For_Directory where ApprovedForDirectory='" + false + "'");
+    var editedNum = db.QueryValue("select count(*) from Main_Database_For_Directory where EditedOrg='" + true + "'");
+}
+
+
 <!DOCTYPE html>
 
 <html>
@@ -17,19 +31,66 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="~/js/mdb.js"></script>
+    <script src="~/js/mdb.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
 
     <div class="jumbotron">
         <h2>Admin Page</h2>
         <p class="lead">Approve/Delete Data</p>
     </div>
-    <div style="background-color: #c5ccd3; padding: 50px; border: 3px solid black;">
+
+    <canvas id="barChart" style="max-width: 500px;"></canvas>
+    <br />
+    
         <a href="@Href("~/Admin/Admin")" class="btn btn-default" style="padding-left: 2px; padding-right: 2px; padding-top: 20px; padding-bottom: 20px; width: 250px; font-size: 15px;"><span class="glyphicon glyphicon-th-large" style="font-size: 15px;"></span> Scraped Data</a>
-        <br />
-        <br />
+        
         <a href="@Href("~/EditAdmin/EditAdmin")" class="btn btn-default" style="padding-left: 2px; padding-right: 2px; padding-top: 20px; padding-bottom: 20px; width: 250px; font-size: 15px;"><span class="glyphicon glyphicon-th-large" style="font-size: 15px;"></span> Edited Data</a>
-    </div>
+    
+
 
 </body>
 
 </html>
+<script>
+
+
+
+    $(document).ready(function () {
+
+
+        var chart = document.getElementById("barChart").getContext('2d');
+        var myBarChart = new Chart(chart, {
+            type: 'bar',
+            data: {
+                labels: ['Scraped Data', 'Edited Data'],
+                datasets: [{
+                    label: 'Data Waiting to be Added',
+                    data: [@scapedNum, @editedNum, 0],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxis: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
+
+    });
+
+</script>
 

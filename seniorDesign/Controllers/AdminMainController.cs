@@ -11,7 +11,9 @@ namespace seniorDesign.Controllers
         // GET: AdminMain
         public ActionResult AdminMain()
         {
-            return View();
+            Entities1 entities = new Entities1();
+            return View(from Main_Database_For_Directory in entities.Main_Database_For_Directory.Take(10) select Main_Database_For_Directory);
+        
         }
     }
 }
