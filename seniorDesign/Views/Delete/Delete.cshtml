@@ -13,6 +13,8 @@
     var row = db.QuerySingle("SELECT * FROM Main_Database_For_Directory WHERE OrgID = @0", OrgID);
     if (IsPost && !OrgID.IsEmpty())
     {
+        var deleteCommentsString ="DELETE FROM Comment_Table WHERE OrgID = @0";
+        db.Execute(deleteCommentsString, OrgID);
         var deleteQueryString = "DELETE FROM Main_Database_For_Directory WHERE OrgID=@0";
         db.Execute(deleteQueryString, OrgID);
         Response.Redirect("~/List/List");

@@ -12,7 +12,7 @@
 @{
     var db = Database.Open("gen-provider-dbConnectionString");
 
-    var queryLen = "select count(*) FROM Main_Database_For_Directory where ApprovedForDirectory = '1' and (StreetAddress != null or StreetAddress != '')";
+    var queryLen = "select count(*) FROM Main_Database_For_Directory where ApprovedForDirectory = '1' and EditedOrg = 'false' and (StreetAddress != null or StreetAddress != '')";
     int num = db.QueryValue(queryLen);
     
 
@@ -35,7 +35,7 @@
 
     var ID = 0;
 
-    var query = "Select distinct Organization, Twitter, StreetAddress, TypeOfOrganization, PhoneNumber, Email, OrgID FROM Main_Database_For_Directory where ApprovedForDirectory = '1' and (StreetAddress != null or StreetAddress != '')";
+    var query = "Select distinct Organization, Twitter, StreetAddress, TypeOfOrganization, PhoneNumber, Email, OrgID FROM Main_Database_For_Directory where ApprovedForDirectory = '1' and EditedOrg = 'false' and (StreetAddress != null or StreetAddress != '')";
 
  }
 

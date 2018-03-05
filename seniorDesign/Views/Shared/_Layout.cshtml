@@ -39,11 +39,11 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-					<li>@Html.ActionLink("Map", "Map", "Map")</li>
-                    <li>@Html.ActionLink("Search", "List", "List")</li>
-                    <li>@Html.ActionLink("Add Provider", "Add", "Add")</li>
-                    <li>@Html.ActionLink("Admin", "AdminMain", "AdminMain")</li>
+                    <li><a href="@Url.Action("Index", "Home")"><span class="glyphicon glyphicon-home" style="font-size: 10px; padding: 4px; float: left;"></span>  Home </a> </li>
+                    <li><a href="@Url.Action("Map", "Map")"><span class="glyphicon glyphicon-map-marker" style="font-size: 10px; padding: 4px; float: left;"></span>  Map </a> </li>
+                    <li><a href="@Url.Action("List", "List")"><span class="glyphicon glyphicon-search" style="font-size: 10px; padding: 4px; float: left;"></span>  Search </a> </li>
+                    <li><a href="@Url.Action("Add", "Add")"><span class="glyphicon glyphicon-plus" style="font-size: 10px; padding: 4px; float: left;"></span>  Add Provider </a> </li>
+                    <li><a href="@Url.Action("AdminMain", "AdminMain")"><span class="glyphicon glyphicon-cog" style="font-size: 10px; padding: 4px; float: left;"></span>  Admin </a> </li>
                     
                 </ul>
             </div>
