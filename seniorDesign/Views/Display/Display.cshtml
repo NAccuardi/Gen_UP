@@ -8,17 +8,13 @@
 @{
 
     var db = Database.Open("gen-provider-dbConnectionString");
-
     var OrgID = Request.QueryString["param1"];
-    
-    
+
 
     if (OrgID.IsEmpty())
     {
         Response.Redirect("~/Map/Map");
     }
-
-
 
    
         var selectQueryString = "SELECT * FROM Main_Database_For_Directory WHERE OrgID=@0";
@@ -46,7 +42,6 @@
 }
 
 
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <style>
     .col-md-12 {
         margin-bottom: 5px;
@@ -61,7 +56,6 @@
     
     @Html.ValidationSummary("Errors with your submission:")
 
-    @*<form method="post" action="">*@
         
             <div class="row">
 
@@ -157,6 +151,6 @@
 
             </div>
        
-    @*</form>*@
+   
 </body>
 </html>

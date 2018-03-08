@@ -5,8 +5,6 @@
 @using WebMatrix.Data;
 
 
-
-
 @{
     //ViewBag.Title = "GEN Provider Directory";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -18,27 +16,12 @@
     var db = Database.Open("gen-provider-dbConnectionString");
     var selectQueryString = "SELECT * FROM Comment_Table";
     var queryString = "SELECT * FROM Main_Database_For_Directory where ApprovedForDirectory='true' and EditedOrg='false' order by Organization";
-    var rows = db.Query(selectQueryString);
-
-    
+    var rows = db.Query(selectQueryString);   
 
 }
   
 <html>
 <head>
-<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
-<link rel="stylesheet" href="/resources/demos/style.css">
-
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-@*<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-    <link rel="stylesheet" href="./css/font-awesome.min.css">*@
 
 </head>
 <body>
@@ -49,14 +32,11 @@
 </div>
 
 <div class="panel panel-primary">
-    <!-- Default panel contents -->
     <div class="panel-heading" id="title_table">
-
 </div>
 
-
     <div style="overflow: scroll; max-height: 360px;">
-        <!-- Table -->
+       
         <table id="myTable1" class="table table-striped table-hover table-bordered" data-show-refresh="true" data-toggle="table" data-search="true" data-pagination="true" data-filter-control="true" data-sort-order="desc">
             <thead>
                 <tr>
@@ -145,7 +125,7 @@
                     var backgroundStyle = (allRev == 0) ? "background-color: #ededed; min-width: 55px; text-align: left" : "min-width: 55px; text-align: left";
                     <tr>
 
-                        <td><a href="@Href("~/Delete/Delete?param1="+ row.OrgID)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
+                        <td><a href="@Href("~/Delete/Delete?param1="+ row.OrgID)" class="btn btn-danger"><span class="fa fa-remove"></span></a></td>
 
                         <td><a href="@Href("~/Edit/Edit?param1="+ row.OrgID)" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a></td>
 
@@ -159,7 +139,7 @@
                         <td>@row.Fax</td>       
                         <td>@row.ServicesOffered</td>
                         <td>@row.TypeOfOrganization</td>
-                        <td><a href="@Href("~/ShowAll/ShowAll?param1="+ row.OrgID)" class="btn btn-default"><span class="glyphicon glyphicon-circle-arrow-right"></span></a></td>
+                        <td><a href="@Href("~/ShowAll/ShowAll?param1="+ row.OrgID)" class="btn btn-default"><span class="fa fa-arrow-right"></span></a></td>
 
 
                     </tr>
@@ -173,60 +153,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="comments" role="dialog">
-    <div class="modal-dialog">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" style="margin-left: 7px" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title" id="commentTitle"></h4>
-            </div>
-            <div class="modal-body">
-
-                <ul class="list-group" id="listOfComments" style="overflow: scroll; max-height: 150px; width: 100%;">
-                    @foreach (var row in db.Query("SELECT * FROM Comment_Table"))
-            {
-                if (row.Verified == null)
-                {
-                            <li class='list-group-item list-group-item-default'><p> @row.CommentsAboutOrganization </p><small>@row.OrgName</small></li>
-                        }
-                        else if (row.Verified == true)
-                        {
-                            <li class='list-group-item list-group-item-success'><p> @row.CommentsAboutOrganization </p><small>@row.OrgName</small></li>
-                        }
-                        else if (row.Verified == false)
-                        {
-                            <li class='list-group-item list-group-item-danger'><p> @row.CommentsAboutOrganization </p><small>@row.OrgName</small></li>
-                        }
-
-                    }
-                </ul>
-                <hr />
-                <div style="background-color: #eeeeee; padding: 7px;">
-                    <h4>Add a Comment:</h4>
-                    <textarea class="form-control" rows="2" id="commentBox"></textarea>
-
-                    <label for="commentName" style="padding-top:4px">Your Organization Name:</label>
-                    <input class="form-control" id="commentName">
-                    <label style="padding-top:4px">Rate: </label>
-                    <br />
-
-                    <button class="btn btn-default" id="likeBtn" onclick="chooseRating(0)"><b><span class="glyphicon glyphicon-thumbs-up"></span></b></button>
-                    <button class="btn btn-default" id="dislikeBtn" onclick="chooseRating(1)"><b><span class="glyphicon glyphicon-thumbs-down"></span></b></button>
-                    <br />
-                    <br />
-                    <button class="btn btn-default" style="margin-top: 5px">Add</button>
-                </div>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" onclick="chooseRating(2)" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-
-    </div>
-</div>
 </body>
 </html>
 
@@ -236,11 +163,8 @@
 
 $(document).ready(function () {
 
-    //$(":input").inputmask();
-
     updateBadge();
     updateButtonColor();
-
 
     });
 
@@ -261,16 +185,6 @@ $(document).ready(function () {
                 //td.css(style = "class='btn btn-danger'");
             }
         }
-    }
-
-    function hello() {
-        var org = $("#commentTitle").text;
-        return org;
-    }
-
-    function deleteOrg(org) {
-        alert(org);
-        var queryDelete = "SELECT * FROM Comment_Table";
     }
 
 function openModal(org) {
@@ -306,7 +220,7 @@ function updateBadge(){
     $("#title_table").html('<span>Directory of Providers </span><span class="badge"> '+i+'</span>');
 
 
-	//$("#commentTitle").html('<span>Comment </span><span style="float: right; font-size: 14px"> Verified by: <span class="badge">85%</span></span>');
+	$("#commentTitle").html('<span>Comment </span><span style="float: right; font-size: 14px"> Verified by: <span class="badge">85%</span></span>');
 
 }
 

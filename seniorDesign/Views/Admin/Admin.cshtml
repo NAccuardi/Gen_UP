@@ -1,7 +1,4 @@
-﻿@using System;
-@using System.Data;
-@using System.Configuration;
-@using System.Data.SqlClient;
+﻿
 @using WebMatrix.Data;
 
 @{
@@ -23,12 +20,6 @@
 <body>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
-
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <div class="jumbotron">
         <h2>Approve/Delete</h2>
@@ -63,8 +54,8 @@
                     {
                         <tr>
 
-                            <td><a href="@Href("~/ApproveAdmin/ApproveAdmin?param1="+ row.OrgID)" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></a></td>
-                            <td><a href="@Href("~/DeleteAdmin/DeleteAdmin?param1="+ row.OrgID)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
+                            <td><a href="@Href("~/ApproveAdmin/ApproveAdmin?param1="+ row.OrgID)" class="btn btn-success"><span class="fa fa-plus"></span></a></td>
+                            <td><a href="@Href("~/DeleteAdmin/DeleteAdmin?param1="+ row.OrgID)" class="btn btn-danger"><span class="fa fa-remove"></span></a></td>
 
                             <td>@row.Organization</td>
                             <td>@row.StreetAddress</td>
@@ -73,7 +64,7 @@
                             <td>@row.Email</td>
                             <td>@row.ServicesOffered</td>
                             <td>@row.TypeOfOrganization</td>
-                            <td><a href="@Href("~/ShowAll/ShowAll?param1="+ row.OrgID)" class="btn btn-default"><span class="glyphicon glyphicon-circle-arrow-right"></span></a></td>
+                            <td><a href="@Href("~/ShowAll/ShowAll?param1="+ row.OrgID)" class="btn btn-default"><span class="fa fa-arrow-right"></span></a></td>
 
 
                         </tr>

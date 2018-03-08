@@ -92,7 +92,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\" />
     <Folder Include="Views\Data\" />
   </ItemGroup>
   <ItemGroup>
@@ -181,6 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Start\WebMatrix.Data.xml" />
+    <Content Include="Content\gen_logo.jpg" />
     <Content Include="css\mdb.css" />
     <Content Include="css\mdb.min.css" />
     <Content Include="css\style.css" />
