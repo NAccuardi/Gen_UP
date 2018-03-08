@@ -1,15 +1,8 @@
-﻿using System;
-using System.Data;
-using System.Text;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using System.Data.Entity;
 using seniorDesign;
-using seniorDesign.Models;
+
 
 namespace MyTecBits_Bootstrap_Empty_MVC.Controllers
 {

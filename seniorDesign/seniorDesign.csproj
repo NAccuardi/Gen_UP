@@ -92,7 +92,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Data\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AdminController.cs" />
@@ -100,7 +100,6 @@
     <Compile Include="Controllers\ApproveAdminController.cs" />
     <Compile Include="Controllers\ApproveEditAdminController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
-    <Compile Include="Controllers\DataController.cs" />
     <Compile Include="Controllers\DeleteAdminController.cs" />
     <Compile Include="Controllers\DeleteController.cs" />
     <Compile Include="Controllers\DeleteEditAdminController.cs" />
@@ -110,36 +109,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Main_Database_For_DirectoryController.cs" />
     <Compile Include="Controllers\ShowAllController.cs" />
-    <Compile Include="DatabaseModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DatabaseModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DatabaseModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DatabaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DatabaseModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DatabaseModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="dataModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dataModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dataModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dataModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dataModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -168,7 +137,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SeniorEntity.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\userInput.cs" />
     <Compile Include="SQLConnClass.cs" />
     <Compile Include="WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
@@ -184,26 +152,6 @@
     <Content Include="css\mdb.css" />
     <Content Include="css\mdb.min.css" />
     <Content Include="css\style.css" />
-    <Content Include="DatabaseModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DatabaseModel.edmx</DependentUpon>
-      <LastGenOutput>DatabaseModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DatabaseModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DatabaseModel.edmx</DependentUpon>
-      <LastGenOutput>DatabaseModel.cs</LastGenOutput>
-    </Content>
-    <Content Include="dataModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>dataModel.Context.cs</LastGenOutput>
-      <DependentUpon>dataModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="dataModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>dataModel.edmx</DependentUpon>
-      <LastGenOutput>dataModel.cs</LastGenOutput>
-    </Content>
     <EntityDeploy Include="SeniorEntity.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SeniorEntity.Designer.cs</LastGenOutput>
@@ -298,13 +246,6 @@
     <Content Include="Views\Map\map_of_world.jpg" />
     <Content Include="Views\Map\Map.cshtml" />
     <Content Include="WebForm1.aspx" />
-    <EntityDeploy Include="DatabaseModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DatabaseModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="DatabaseModel.edmx.diagram">
-      <DependentUpon>DatabaseModel.edmx</DependentUpon>
-    </Content>
     <Content Include="Views\Main_Database_For_Directory\Create.cshtml" />
     <Content Include="Views\Main_Database_For_Directory\Delete.cshtml" />
     <Content Include="Views\Main_Database_For_Directory\Details.cshtml" />
@@ -345,13 +286,6 @@
     <None Include="css\bootstrap-theme.min.css.map" />
     <None Include="css\bootstrap.css.map" />
     <None Include="css\bootstrap.min.css.map" />
-    <EntityDeploy Include="dataModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>dataModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="dataModel.edmx.diagram">
-      <DependentUpon>dataModel.edmx</DependentUpon>
-    </Content>
     <None Include="css\fontawesome-webfont.woff2" />
     <None Include="css\glyphicons-halflings-regular.woff2" />
     <None Include="_bin_deployableAssemblies\amd64\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
