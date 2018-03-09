@@ -1,0 +1,156 @@
+﻿@using WebMatrix.Data;
+
+@{
+    ViewBag.Title = "GEN Provider Directory";
+    Layout = "~/Views/Shared_Directory/_Layout.cshtml";
+}
+
+@{
+
+    var db = Database.Open("gen-provider-dbConnectionString");
+    var OrgID = Request.QueryString["param1"];
+
+
+    if (OrgID.IsEmpty())
+    {
+        Response.Redirect("~/Directory/Map");
+    }
+
+   
+        var selectQueryString = "SELECT * FROM Main_Database_For_Directory WHERE OrgID=@0";
+
+        var row = db.QuerySingle(selectQueryString, OrgID);
+        var Organization = row.Organization;
+        var Phone = row.PhoneNumber;
+        var Email = row.Email;
+        var Street = row.StreetAddress;
+        var Fax = row.Fax;
+        var Facebook = row.Facebook;
+        var Google = row.Google;
+        var Youtube = row.Youtube;
+        var Instagram = row.Instagram;
+        var Pinterest = row.Pinterest;
+        var CharityNavigator = row.CharityNavigator;
+        var Linkedin = row.Linkedin;
+        var Vimeo = row.Vimeo;
+        var Guidestar = row.Guidestar;
+        var Twitter = row.Twitter;
+        var Services = row.ServicesOffered;
+        var Type = row.TypeOfOrganization;
+    
+
+}
+
+
+<style>
+    .col-md-12 {
+        margin-bottom: 5px;
+    }
+</style>
+<!DOCTYPE html>
+
+<html>
+<head>
+</head>
+<body>
+    
+    @Html.ValidationSummary("Errors with your submission:")
+
+        
+            <div class="row">
+
+
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Organization:</label></div>
+                    <div class="col-md-8"><input name="Organization" style="border: 0px" readonly="readonly" class="form-control" type="text" size="100" value="@Organization" /></div>
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Phone Number:</label></div>
+                    <div class="col-md-8"><input class="form-control" style="border: 0px" readonly="readonly"  name="Phone" type="text" size="100" value="@Phone" /></div>
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Email:</label></div>
+                    <div class="col-md-8"><input class="form-control" style="border: 0px" readonly="readonly"  name="Email" type="text" size="100" value="@Email" /></div>
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Address:</label></div>
+                    <div class="col-md-8"><input class="form-control" style="border: 0px" readonly="readonly" name="Street" type="text" size="100" value="@Street" /></div>
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Fax:</label></div>
+                    <div class="col-md-8"><input class="form-control" style="border: 0px" readonly="readonly" name="Fax" type="text" size="100" value="@Fax" /></div>
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Facebook:</label></div>
+                    <div class="col-md-8"><input class="form-control" style="border: 0px" readonly="readonly" name="Facebook" type="text" size="100" value="@Facebook" /></div>
+                    <div class="col-md-1"><a href="@Facebook" target="_blank"><span style="font-size: 20px" class="fa fa-facebook"></span></a></div>
+
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Google:</label></div>
+                    <div class="col-md-8"><input class="form-control" style="border: 0px" readonly="readonly" name="Google" type="text" size="100" value="@Google" /></div>
+                    <div class="col-md-1"><a href="@Google" target="_blank"><span style="font-size: 20px" class="fa fa-google"></span></a></div>
+
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Youtube:</label></div>
+                    <div class="col-md-8"><input class="form-control" style="border: 0px" readonly="readonly" name="Youtube" type="text" size="100" value="@Youtube" /></div>
+                    <div class="col-md-1"><a href="@Youtube" target="_blank"><span style="font-size: 20px" class="fa fa-youtube"></span></a></div>
+
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Instagram:</label></div>
+                    <div class="col-md-8"><input class="form-control" style="border: 0px" readonly="readonly" name="Instagram" type="text" size="100" value="@Instagram" /></div>
+                    <div class="col-md-1"><a href="@Instagram" target="_blank"><span style="font-size: 20px" class="fa fa-instagram"></span></a></div>
+
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Pinterest:</label></div>
+                    <div class="col-md-8"><input class="form-control" style="border: 0px" readonly="readonly" name="Pinterest" type="text" size="100" value="@Pinterest" /></div>
+                    <div class="col-md-1"><a href="@Pinterest" target="_blank"><span style="font-size: 20px" class="fa fa-pinterest"></span></a></div>
+
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Charity Navigator:</label></div>
+                    <div class="col-md-8"><input class="form-control" style="border: 0px" readonly="readonly" name="CharityNavigator" type="text" size="100" value="@CharityNavigator" /></div>
+                    <div class="col-md-1"><a href="@CharityNavigator" target="_blank"><span style="font-size: 20px" class="fa fa-link"></span></a></div>
+
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Linkedin:</label></div>
+                    <div class="col-md-8"><input class="form-control" style="border: 0px" readonly="readonly" name="Linkedin" type="text" size="100" value="@Linkedin" /></div>
+                    <div class="col-md-1"><a href="@Linkedin" target="_blank"><span style="font-size: 20px" class="fa fa-linkedin"></span></a></div>
+
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Vimeo:</label></div>
+                    <div class="col-md-8"><input class="form-control" style="border: 0px" readonly="readonly" name="Vimeo" type="text" size="100" value="@Vimeo" /></div>
+                    <div class="col-md-1"><a href="@Vimeo" target="_blank"><span style="font-size: 20px" class="fa fa-vimeo"></span></a></div>
+
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Guidestar:</label></div>
+                    <div class="col-md-8"><input class="form-control" style="border: 0px" readonly="readonly" name="Guidestar" type="text" size="100" value="@Guidestar" /></div>
+                    <div class="col-md-1"><a href="@Guidestar" target="_blank"><span style="font-size: 20px" class="fa fa-link"></span></a></div>
+
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Twitter:</label></div>
+                    <div class="col-md-8"><input class="form-control" style="border: 0px" readonly="readonly" name="Twitter" type="text" size="100" value="@Twitter" /></div>
+                    <div class="col-md-1"><a href="@Twitter" target="_blank"><span style="font-size: 20px" class="fa fa-twitter"></span></a></div>
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Services Offered:</label></div>
+                    <div class="col-md-8"><input class="form-control" style="border: 0px" readonly="readonly" name="Services" type="text" size="100" value="@Services" /></div>
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Type of Organization:</label></div>
+                    <div class="col-md-8"><input class="form-control" style="border: 0px" readonly="readonly" name="Type" type="text" size="100" value="@Type" /></div>
+                </div>
+                
+
+            </div>
+       
+   
+</body>
+</html>

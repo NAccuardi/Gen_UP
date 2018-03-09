@@ -95,27 +95,11 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\AdminMainController.cs" />
-    <Compile Include="Controllers\ApproveAdminController.cs" />
-    <Compile Include="Controllers\ApproveEditAdminController.cs" />
-    <Compile Include="Controllers\CommentsController.cs" />
-    <Compile Include="Controllers\DeleteAdminController.cs" />
-    <Compile Include="Controllers\DeleteController.cs" />
-    <Compile Include="Controllers\DeleteEditAdminController.cs" />
-    <Compile Include="Controllers\DisplayController.cs" />
-    <Compile Include="Controllers\EditAdminController.cs" />
-    <Compile Include="Controllers\EditController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\Main_Database_For_DirectoryController.cs" />
-    <Compile Include="Controllers\ShowAllController.cs" />
+    <Compile Include="Controllers\ProviderDirectoryControllers.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AddController.cs" />
-    <Compile Include="Controllers\ListController.cs" />
-    <Compile Include="Controllers\MapController.cs" />
     <Compile Include="Comment_Table.cs">
       <DependentUpon>SeniorEntity.tt</DependentUpon>
     </Compile>
@@ -203,10 +187,9 @@
     <Content Include="Views\Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Directory\Index.cshtml" />
+    <Content Include="Views\Shared_Directory\_Layout.cshtml" />
+    <Content Include="Views\Shared_Directory\Error.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
@@ -241,28 +224,23 @@
     <Content Include="css\glyphicons-halflings-regular.svg" />
     <Content Include="css\glyphicons-halflings-regular.ttf" />
     <Content Include="css\glyphicons-halflings-regular.woff" />
-    <Content Include="Views\Add\Add.cshtml" />
-    <Content Include="Views\List\List.cshtml" />
-    <Content Include="Views\Map\map_of_world.jpg" />
-    <Content Include="Views\Map\Map.cshtml" />
+    <Content Include="Views\Directory\Add.cshtml" />
+    <Content Include="Views\Directory\List.cshtml" />
+    <Content Include="Views\Directory\Map.cshtml" />
     <Content Include="WebForm1.aspx" />
-    <Content Include="Views\Main_Database_For_Directory\Create.cshtml" />
-    <Content Include="Views\Main_Database_For_Directory\Delete.cshtml" />
-    <Content Include="Views\Main_Database_For_Directory\Details.cshtml" />
-    <Content Include="Views\Main_Database_For_Directory\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Admin\Admin.cshtml" />
-    <Content Include="Views\Edit\Edit.cshtml" />
-    <Content Include="Views\Delete\Delete.cshtml" />
-    <Content Include="Views\DeleteAdmin\DeleteAdmin.cshtml" />
-    <Content Include="Views\ApproveAdmin\ApproveAdmin.cshtml" />
-    <Content Include="Views\Comments\Comments.cshtml" />
-    <Content Include="Views\ShowAll\ShowAll.cshtml" />
-    <Content Include="Views\Display\Display.cshtml" />
-    <Content Include="Views\EditAdmin\EditAdmin.cshtml" />
-    <Content Include="Views\AdminMain\AdminMain.cshtml" />
-    <Content Include="Views\DeleteEditAdmin\DeleteEditAdmin.cshtml" />
-    <Content Include="Views\ApproveEditAdmin\ApproveEditAdmin.cshtml" />
+    <Content Include="Views\Directory\Admin.cshtml" />
+    <Content Include="Views\Directory\Edit.cshtml" />
+    <Content Include="Views\Directory\Delete.cshtml" />
+    <Content Include="Views\Directory\DeleteAdmin.cshtml" />
+    <Content Include="Views\Directory\ApproveAdmin.cshtml" />
+    <Content Include="Views\Directory\Comments.cshtml" />
+    <Content Include="Views\Directory\ShowAll.cshtml" />
+    <Content Include="Views\Directory\Display.cshtml" />
+    <Content Include="Views\Directory\EditAdmin.cshtml" />
+    <Content Include="Views\Directory\AdminMain.cshtml" />
+    <Content Include="Views\Directory\DeleteEditAdmin.cshtml" />
+    <Content Include="Views\Directory\ApproveEditAdmin.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

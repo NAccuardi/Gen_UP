@@ -1,0 +1,120 @@
+﻿@using WebMatrix.Data;
+@{
+    ViewBag.Title = "GEN Provider Directory";
+    Layout = "~/Views/Shared_Directory/_Layout.cshtml";
+}
+
+@{
+    var db = Database.Open("gen-provider-dbConnectionString");
+    var EditedOrg = Request.QueryString["param1"];
+
+    if (EditedOrg.IsEmpty())
+    {
+        Response.Redirect("~/Directory/EditAdmin");
+    }
+    var row = db.QuerySingle("SELECT * FROM Main_Database_For_Directory WHERE OrgID = @0", EditedOrg);
+    var row2 = db.QuerySingle("SELECT * FROM Main_Database_For_Directory WHERE OrgID = @0", @row.OriginalOrg);
+    if (IsPost && !EditedOrg.IsEmpty())
+    {
+        var updateQueryString =
+           "UPDATE Main_Database_For_Directory SET Organization=@0, PhoneNumber=@1, Email=@2, StreetAddress=@3, Fax=@4, Facebook=@5, Google=@6, Youtube=@7, Instagram=@8, Pinterest=@9, CharityNavigator=@10, Linkedin=@11, Vimeo=@12, Guidestar=@13, Twitter=@14, ServicesOffered=@15, TypeOfOrganization=@16 WHERE OrgID=@17";
+        var deleteQueryString = "DELETE FROM Main_Database_For_Directory WHERE OrgID=@0";
+
+     
+        try
+        {
+
+            db.Execute(updateQueryString, @row.Organization, @row.PhoneNumber, @row.Email, @row.StreetAddress, @row.Fax, @row.Facebook, @row.Google, @row.Youtube, @row.Instagram, @row.Pinterest, @row.CharityNavigator, @row.Linkedin, @row.Vimeo, @row.Guidestar, @row.Twitter, @row.ServicesOffered, @row.TypeOfOrganization, @row.OriginalOrg);
+            try
+            {
+                db.Execute(deleteQueryString, EditedOrg);
+            }
+            catch (Exception e)
+            {
+                Response.Write("<script>alert('Unable to delete Edited Organization.)</script>");
+            }
+
+           
+            Response.Redirect(@Href("~/Directory/EditAdmin"));
+        }
+        catch (Exception ex)
+        {
+            Response.Write("<script>alert('Something went wrong.')</script>");
+        }
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Approve Organization</title>
+</head>
+<body>
+    <h2> Approve Edit Request - Confirmation</h2>
+    <form method="post" action="" name="form">
+        <hr />
+        <h4>Are you sure you want to approve the following changes?</h4>
+        <br />
+        <div class="container">
+        <div class="row">
+            
+            <div class="col-6 col-md-4">
+                <b style="color: #b92c28">ORIGINAL </b>
+                <span class="glyphicon glyphicon-remove" style="color: #b92c28"></span> 
+                <hr style="margin-top: -1px;" />
+                <div style="border:1px solid black; padding: 5px; font-size: 16px;">
+                    <b>Organization Name:</b> @row2.Organization <br />
+                    <b>Phone:</b> @row2.PhoneNumber <br />
+                    <b>Email:</b> @row2.Email <br />
+                    <b>Address:</b> @row2.StreetAddress <br />
+                    <b>Fax:</b> @row2.Fax <br />
+                    <b>Services Offered:</b> @row2.ServicesOffered <br />
+                    <b>Type of Organization:</b> @row2.TypeOfOrganization <br />
+                    <b>Facebook:</b> @row2.Facebook <br />
+                    <b>Google:</b> @row2.Google <br />
+                    <b>Youtube:</b> @row2.Youtube <br />
+                    <b>Instagram:</b> @row2.Instagram <br />
+                    <b>Pinterest:</b> @row2.Pinterest <br />
+                    <b>Charity Navigator:</b> @row2.CharityNavigator <br />
+                    <b>Linkedin:</b> @row2.Linkedin <br />
+                    <b>Vimeo:</b> @row2.Vimeo <br />
+                    <b>Guidestar:</b> @row2.Guidestar <br />
+                    <b>Twitter:</b> @row2.Twitter <br />
+                </div>
+            </div>
+                <div class="col-6 col-md-4">
+                    <b style="color: darkgreen">CHANGES </b>
+                    <span class="glyphicon glyphicon-plus" style="color: darkgreen"></span> 
+                    <hr style="margin-top: -1px;" />
+                    <div style="border:1px solid black; padding: 5px; font-size: 16px;">
+                    <b>Organization Name:</b> @row.Organization <br />
+                    <b>Phone:</b> @row.PhoneNumber <br />
+                    <b>Email:</b> @row.Email <br />
+                    <b>Address:</b> @row.StreetAddress <br />
+                    <b>Fax:</b> @row.Fax <br />
+                    <b>Services Offered:</b> @row.ServicesOffered <br />
+                    <b>Type of Organization:</b> @row.TypeOfOrganization <br />
+                    <b>Facebook:</b> @row.Facebook <br />
+                    <b>Google:</b> @row.Google <br />
+                    <b>Youtube:</b> @row.Youtube <br />
+                    <b>Instagram:</b> @row.Instagram <br />
+                    <b>Pinterest:</b> @row.Pinterest <br />
+                    <b>Charity Navigator:</b> @row.CharityNavigator <br />
+                    <b>Linkedin:</b> @row.Linkedin <br />
+                    <b>Vimeo:</b> @row.Vimeo <br />
+                    <b>Guidestar:</b> @row.Guidestar <br />
+                    <b>Twitter:</b> @row.Twitter <br />
+                </div>
+            </div>
+
+        </div>
+            <br />
+     </div>
+        
+        <p><input type="submit" value="Approve" class="btn btn-success" /></p>
+    </form>
+</body>
+</html>
+
+
+

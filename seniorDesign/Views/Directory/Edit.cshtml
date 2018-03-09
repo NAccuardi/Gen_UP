@@ -1,0 +1,214 @@
+﻿@using WebMatrix.Data;
+
+@{
+    ViewBag.Title = "GEN Provider Directory";
+    Layout = "~/Views/Shared_Directory/_Layout.cshtml";
+}
+
+@{
+
+    var db = Database.Open("gen-provider-dbConnectionString");
+
+    var OrgID = Request.QueryString["param1"];
+    var Organization = "";
+    var Phone = "";
+    var Email = "";
+    var Street = "";
+    var Fax = "";
+    var Facebook = "";
+    var Google = "";
+    var Youtube = "";
+    var Instagram = "";
+    var Pinterest = "";
+    var CharityNavigator = "";
+    var Linkedin = "";
+    var Vimeo = "";
+    var Guidestar = "";
+    var Twitter = "";
+    var Services = "";
+    var Type = "";
+    var InfoSource = true;
+    var Approved = true;
+    var EditedOrg = true;
+
+    if (OrgID.IsEmpty())
+    {
+        Response.Redirect("~/Directory/List");
+    }
+
+
+
+    if (IsPost)
+    {
+        var updateQueryString =
+            "UPDATE Main_Database_For_Directory SET Organization=@0, PhoneNumber=@1, Email=@2, StreetAddress=@3, Fax=@4, Facebook=@5, Google=@6, Youtube=@7, Instagram=@8, Pinterest=@9, CharityNavigator=@10, Linkedin=@11, Vimeo=@12, Guidestar=@13, Twitter=@14, ServicesOffered=@15, TypeOfOrganization=@16, EditedOrg='1' WHERE OrgID=@17";
+        Organization = Request["Organization"];
+        Phone = Request["Phone"];
+        Email = Request["Email"];
+        Street = Request["Street"];
+        Fax = Request["Fax"];
+        Facebook = Request["Facebook"];
+        Google = Request["Google"];
+        Youtube = Request["Youtube"];
+        Instagram = Request["Instagram"];
+        Pinterest = Request["Pinterest"];
+        CharityNavigator = Request["CharityNavigator"];
+        Linkedin = Request["Linkedin"];
+        Vimeo = Request["Vimeo"];
+        Guidestar = Request["Guidestar"];
+        Twitter = Request["Twitter"];
+        Services = Request["Services"];
+        Type = Request["Type"];
+        try
+        {
+
+            //db.Execute(updateQueryString, Organization, Phone, Email, Street, Fax, Facebook, Google, Youtube, Instagram, Pinterest, CharityNavigator, Linkedin, Vimeo, Guidestar, Twitter, Services, Type, OrgID);
+            var insertQuery = "INSERT INTO Main_Database_For_Directory (Organization, PhoneNumber, Email, StreetAddress, Fax, Facebook, Google, Youtube, Instagram, Pinterest, CharityNavigator, Linkedin, Vimeo, Guidestar, Twitter, ServicesOffered, TypeOfOrganization, InformationSource, ApprovedForDirectory, OriginalOrg, EditedOrg) " +
+                "VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15, @16, @17, @18, @19, @20)";
+            db.Execute(insertQuery, Organization, Phone, Email, Street, Fax, Facebook, Google, Youtube, Instagram, Pinterest, CharityNavigator, Linkedin, Vimeo, Guidestar, Twitter, Services, Type, InfoSource, Approved, OrgID, EditedOrg);
+
+            //db.Execute(insertQuery, Org, Phone, Email, Street, Fax, Facebook, Google, Youtube, Instagram, Pinterest, CharityNavigator, Linkedin, Vimeo, Guidestar, Twitter, Services, Type, InfoSource, Approved);
+
+            Response.Redirect(@Href("~/Directory/List"));
+        }
+        catch (Exception ex)
+        {
+            Response.Write("<script>alert('Something went wrong.\\nSome fields may be filled in incorrectly.')</script>");
+        }
+
+
+
+    }
+    else
+    {
+        var selectQueryString = "SELECT * FROM Main_Database_For_Directory WHERE OrgID=@0";
+
+        var row = db.QuerySingle(selectQueryString, OrgID);
+        Organization = row.Organization;
+        Phone = row.PhoneNumber;
+        Email = row.Email;
+        Street = row.StreetAddress;
+        Fax = row.Fax;
+        Facebook = row.Facebook;
+        Google = row.Google;
+        Youtube = row.Youtube;
+        Instagram = row.Instagram;
+        Pinterest = row.Pinterest;
+        CharityNavigator = row.CharityNavigator;
+        Linkedin = row.Linkedin;
+        Vimeo = row.Vimeo;
+        Guidestar = row.Guidestar;
+        Twitter = row.Twitter;
+        Services = row.ServicesOffered;
+        Type = row.TypeOfOrganization;
+    }
+
+}
+
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<style>
+    .col-md-12 {
+        margin-bottom: 5px;
+    }
+</style>
+<!DOCTYPE html>
+
+<html>
+<head>
+</head>
+<body>
+    <div class="jumbotron">
+        <h2>Edit Providers </h2>
+        <p class="lead">Request to edit providers.</p>
+    </div>
+
+
+    @Html.ValidationSummary("Errors with your submission:")
+
+    <form method="post" action="">
+        <fieldset>
+            <div class="row">
+
+
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Organization:</label></div>
+                    <div class="col-md-8"><input class="form-control" name="Organization" type="text" size="100" value="@Organization" /></div>
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Phone Number:</label></div>
+                    <div class="col-md-8"><input class="form-control" name="Phone" type="text" size="100" value="@Phone" /></div>
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Email:</label></div>
+                    <div class="col-md-8"><input class="form-control" name="Email" type="text" size="100" value="@Email" /></div>
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Address:</label></div>
+                    <div class="col-md-8"><input class="form-control" name="Street" type="text" size="100" value="@Street" /></div>
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Fax:</label></div>
+                    <div class="col-md-8"><input class="form-control" name="Fax" type="text" size="100" value="@Fax" /></div>
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Facebook:</label></div>
+                    <div class="col-md-8"><input class="form-control" name="Facebook" type="text" size="100" value="@Facebook" /></div>
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Google:</label></div>
+                    <div class="col-md-8"><input class="form-control" name="Google" type="text" size="100" value="@Google" /></div>
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Youtube:</label></div>
+                    <div class="col-md-8"><input class="form-control" name="Youtube" type="text" size="100" value="@Youtube" /></div>
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Instagram:</label></div>
+                    <div class="col-md-8"><input class="form-control" name="Instagram" type="text" size="100" value="@Instagram" /></div>
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Pinterest:</label></div>
+                    <div class="col-md-8"><input class="form-control" name="Pinterest" type="text" size="100" value="@Pinterest" /></div>
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Charity Navigator:</label></div>
+                    <div class="col-md-8"><input class="form-control" name="CharityNavigator" type="text" size="100" value="@CharityNavigator" /></div>
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Linkedin:</label></div>
+                    <div class="col-md-8"><input class="form-control" name="Linkedin" type="text" size="100" value="@Linkedin" /></div>
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Vimeo:</label></div>
+                    <div class="col-md-8"><input class="form-control" name="Vimeo" type="text" size="100" value="@Vimeo" /></div>
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Guidestar:</label></div>
+                    <div class="col-md-8"><input class="form-control" name="Guidestar" type="text" size="100" value="@Guidestar" /></div>
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Twitter:</label></div>
+                    <div class="col-md-8"><input class="form-control" name="Twitter" type="text" size="100" value="@Twitter" /></div>
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Services Offered:</label></div>
+                    <div class="col-md-8"><input class="form-control" name="Services" type="text" size="100" value="@Services" /></div>
+                </div>
+                <div class="col-md-12">
+                    <div class=" col-md-offset-1 col-md-2"><label>Type of Organization:</label></div>
+                    <div class="col-md-8"><input class="form-control" name="Type" type="text" size="100" value="@Type" /></div>
+                </div>
+                <div class="col-md-offset-3 col-md-12">
+                    <label>&nbsp;</label>
+                    <input type="submit" value="Submit" class="submit btn btn-success" />
+                </div>
+
+            </div>
+        </fieldset>
+    </form>
+    </body>
+</html>
+
+
+    
